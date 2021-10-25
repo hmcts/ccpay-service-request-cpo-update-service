@@ -111,7 +111,8 @@ jacocoTestReport {
 project.tasks['sonarqube'].dependsOn jacocoTestReport
 
 def sonarExclusions = [
-  '**/config/**'
+  '**/config/**',
+  'CpoUpdateApplication.java'
 ]
 
 
