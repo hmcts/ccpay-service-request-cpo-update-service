@@ -100,7 +100,7 @@ pmd {
 }
 
 jacocoTestReport {
-  executionData(test, integration)
+  executionData(test)
   reports {
     xml.required = true
     csv.required = false
@@ -112,6 +112,7 @@ project.tasks['sonarqube'].dependsOn jacocoTestReport
 
 sonarqube {
   properties {
+    property "sonar.java.coveragePlugin", "jacoco"
     property "sonar.projectName", "Reform :: cpo-update-service"
     property "sonar.projectKey", "uk.gov.hmcts.payments:cpo-update-service"
     property "sonar.coverage.jacoco.xmlReportPaths", "${project.buildDir}/reports/jacoco/test/jacocoTestReport.xml"
