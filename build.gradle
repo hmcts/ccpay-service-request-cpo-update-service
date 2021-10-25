@@ -143,6 +143,9 @@ dependencyCheck {
   }
 }
 
+apply from: "${rootDir}/cve-resolution-strategy.gradle"
+
+
 repositories {
   mavenLocal()
   mavenCentral()
