@@ -1,0 +1,26 @@
+#!groovy
+properties(
+  [
+    [
+      $class       : 'GithubProjectProperty',
+      projectUrlStr: 'https://github.com/hmcts/ccpay-service-request-cpo-update-service'
+    ],
+    pipelineTriggers([[$class: 'GitHubPushTrigger']])
+  ]
+)
+
+@Library("Infrastructure")
+
+def type = "java"
+def product = "ccpay"
+def component = "service-request-cpo-update-service"
+
+def branchesToSync = ['demo', 'ithc', 'perftest']
+
+
+withPipeline(type, product, component) {
+  enableAksStagingDeployment()
+  disableLegacyDeploymentOnAAT()
+  disableLegacyDeployment()
+  syncBranchesWithMaster(branchesToSync)
+}
