@@ -23,7 +23,7 @@ class DemoUnitTest {
     @Test
     void testRootController() {
         ResponseEntity<String> response = rootController.welcome();
-        assertEquals(200,response.getStatusCode().value());
-        assertEquals("Welcome to CPO update service",response.getBody());
+        assertEquals(200,response.getStatusCode().value(),"Status code is not same");
+        assertEquals("Welcome to CPO update service",response.getBody(),"Value is not same");
     }
 }
