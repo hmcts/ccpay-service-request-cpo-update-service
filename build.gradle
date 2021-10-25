@@ -110,6 +110,11 @@ jacocoTestReport {
 
 project.tasks['sonarqube'].dependsOn jacocoTestReport
 
+def sonarExclusions = [
+  '**/config/**'
+]
+
+
 sonarqube {
   properties {
     property "sonar.java.coveragePlugin", "jacoco"
