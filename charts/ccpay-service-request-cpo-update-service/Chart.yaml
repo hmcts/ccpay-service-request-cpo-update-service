@@ -1,9 +1,9 @@
 apiVersion: v2
 appVersion: "1.0"
 description: A Helm chart for service-request-cpo-update-service App
-name: service-request-cpo-update-service
+name: ccpay-service-request-cpo-update-service
 home: https://github.com/hmcts/ccpay-service-request-cpo-update-service
-version: 0.0.4
+version: 0.0.5
 maintainers:
   - name: HMCTS Fees and Pay team
 dependencies:
