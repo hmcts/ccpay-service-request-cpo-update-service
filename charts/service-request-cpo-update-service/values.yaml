@@ -1,8 +1,8 @@
 java:
   applicationPort: 8080
   image: 'hmctspublic.azurecr.io/ccpay/service-request-cpo-update-service:latest'
-  ingressHost: rpe-spring-boot-template-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
-  aadIdentityName: rpe
+#  ingressHost: rpe-spring-boot-template-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
+  aadIdentityName: ccpay
 #  Uncomment once the vault containing the app insights key has been set up
 #  keyVaults:
 #    rpe:
