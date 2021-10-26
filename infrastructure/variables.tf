@@ -1,8 +1,12 @@
-variable "product" {}
+variable "product" {
+  type    = string
+  default = "ccpay"
+}
 
 variable "component" {}
 
 variable "location" {
+  type    = string
   default = "UK South"
 }
 
