@@ -4,6 +4,9 @@ provider "azurerm" {
 
 locals {
   subscription_name = "serviceRequestCpoUpdateSubscription"
+  s2s_rg_prefix               = "rpe-service-auth-provider"
+  s2s_key_vault_name          = var.env == "preview" || var.env == "spreview" ? join("-", ["s2s", "aat"]) : join("-", ["s2s", var.env])
+  s2s_vault_resource_group    = var.env == "preview" || var.env == "spreview" ? join("-", [local.s2s_rg_prefix, "aat"]) : join("-", [local.s2s_rg_prefix, var.env])
 }
 
 data "azurerm_resource_group" "rg" {
@@ -41,3 +44,18 @@ resource "azurerm_key_vault_secret" "ccpay_service_request_cpo_update_topic_shar
   key_vault_id = data.azurerm_key_vault.ccpay_key_vault.id
 }
 
+data "azurerm_key_vault" "s2s_key_vault" {
+  name                = local.s2s_key_vault_name
+  resource_group_name = local.s2s_vault_resource_group
+}
+
+data "azurerm_key_vault_secret" "s2s_secret" {
+  name          = "microservicekey-service-request-cpo-update-service"
+  key_vault_id  = data.azurerm_key_vault.s2s_key_vault.id
+}
+
+resource "azurerm_key_vault_secret" "service_request_cpo_update_service_s2s_secret" {
+  name          = "service-request-cpo-update-service-s2s-secret"
+  value         = data.azurerm_key_vault_secret.s2s_secret.value
+  key_vault_id  = data.azurerm_key_vault.ccpay_key_vault.id
+}
