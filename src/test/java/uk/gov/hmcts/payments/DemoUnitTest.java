@@ -1,19 +1,17 @@
 package uk.gov.hmcts.payments;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.InjectMocks;
 import org.springframework.http.ResponseEntity;
 import uk.gov.hmcts.payments.controllers.RootController;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@SpringBootTest
 class DemoUnitTest {
 
-    @Autowired
-    RootController rootController;
+    @InjectMocks
+    RootController rootController = new RootController();
 
     @Test
     void exampleOfTest() {

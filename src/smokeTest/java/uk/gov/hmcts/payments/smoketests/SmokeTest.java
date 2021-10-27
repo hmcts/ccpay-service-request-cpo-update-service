@@ -9,15 +9,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static io.restassured.RestAssured.given;
-import static org.springframework.test.util.AssertionErrors.assertFalse;
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
+import static org.springframework.test.util.AssertionErrors.assertFalse;
 
 
 
 @ExtendWith(SpringExtension.class)
 @Slf4j
-public class SmokeTest {
+class SmokeTest {
     @Value("${TEST_URL:http://localhost:8080}")
     private String testUrl;
 
@@ -27,7 +27,7 @@ public class SmokeTest {
     }
 
     @Test
-    public void healthCheck() {
+    void healthCheck() {
         given()
             .relaxedHTTPSValidation()
             .header(CONTENT_TYPE, "application/json")
