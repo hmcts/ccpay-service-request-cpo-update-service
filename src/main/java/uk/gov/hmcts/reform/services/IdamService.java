@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.services;
 
+import uk.gov.hmcts.reform.dtos.responses.IdamTokenResponse;
+
 public interface IdamService {
-    String getAccessToken();
+    IdamTokenResponse getSecurityTokens();
 }

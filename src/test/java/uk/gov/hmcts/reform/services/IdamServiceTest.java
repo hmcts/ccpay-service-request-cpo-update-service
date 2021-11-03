@@ -15,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import uk.gov.hmcts.reform.dtos.responses.IdamTokenResponse;
 import uk.gov.hmcts.reform.exceptions.CpoUpdateException;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -41,8 +42,8 @@ class IdamServiceTest {
                                                     .build();
         Mockito.when(restTemplateIdam.exchange(anyString(), eq(HttpMethod.POST), Mockito.any(), eq(
             IdamTokenResponse.class))).thenReturn(ResponseEntity.ok(idamTokenResponse));
-        String actualAccessToken = idamService.getAccessToken();
-        assertEquals("access-token",actualAccessToken,"expected token is access-token");
+        IdamTokenResponse actualResponse = idamService.getSecurityTokens();
+        assertThat(idamTokenResponse).usingRecursiveComparison().isEqualTo(actualResponse);
     }
 
     @Test
@@ -50,7 +51,7 @@ class IdamServiceTest {
         Mockito.when(restTemplateIdam.exchange(anyString(), eq(HttpMethod.POST), Mockito.any(), eq(
             IdamTokenResponse.class))).thenThrow(new HttpClientErrorException(HttpStatus.BAD_REQUEST));
         CpoUpdateException cpoUpdateException = assertThrows(CpoUpdateException.class,
-            () -> idamService.getAccessToken());
+            () -> idamService.getSecurityTokens());
         assertEquals("IDAM",cpoUpdateException.getServer(),"Server should be IDAM");
     }
 
@@ -59,7 +60,7 @@ class IdamServiceTest {
         Mockito.when(restTemplateIdam.exchange(anyString(), eq(HttpMethod.POST), Mockito.any(), eq(
             IdamTokenResponse.class))).thenThrow(new HttpServerErrorException(HttpStatus.SERVICE_UNAVAILABLE));
         CpoUpdateException cpoUpdateException = assertThrows(CpoUpdateException.class,
-            () -> idamService.getAccessToken());
+            () -> idamService.getSecurityTokens());
         assertEquals("IDAM",cpoUpdateException.getServer(),"Server should be IDAM");
     }
 }

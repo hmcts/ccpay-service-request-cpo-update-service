@@ -21,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.dtos.requests.CpoUpdateServiceRequest;
+import uk.gov.hmcts.reform.dtos.responses.IdamTokenResponse;
 import uk.gov.hmcts.reform.exceptions.CpoUpdateException;
 import uk.gov.hmcts.reform.exceptions.MaxTryExceededException;
 
@@ -78,7 +79,7 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
     private MultiValueMap<String,String> getHttpHeaders() {
         MultiValueMap<String, String> inputHeaders = new LinkedMultiValueMap<>();
         inputHeaders.put("content-type",Arrays.asList("application/json"));
-        inputHeaders.put("Authorization", Arrays.asList(idamService.getAccessToken()));
+        inputHeaders.put("Authorization", Arrays.asList(getAccessToken()));
         inputHeaders.put("ServiceAuthorization", Arrays.asList(getServiceAuthorisationToken()));
         return inputHeaders;
     }
@@ -91,5 +92,10 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
         } catch (Exception e) {
             throw new CpoUpdateException("S2S",HttpStatus.SERVICE_UNAVAILABLE,e);
         }
+    }
+
+    private String getAccessToken() {
+        IdamTokenResponse idamTokenResponse = idamService.getSecurityTokens();
+        return idamTokenResponse.getAccessToken();
     }
 }

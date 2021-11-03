@@ -53,14 +53,8 @@ public class IdamServiceImpl implements IdamService {
     private static final Logger LOG = LoggerFactory.getLogger(IdamServiceImpl.class);
 
 
-
     @Override
-    public String getAccessToken() {
-        IdamTokenResponse idamTokenResponse = getSecurityTokens();
-        return idamTokenResponse.getAccessToken();
-    }
-
-    private IdamTokenResponse getSecurityTokens() {
+    public IdamTokenResponse getSecurityTokens() {
         LOG.info("getSecurityTokens");
         LOG.info("clientId {}",clientId);
         LOG.info("clientSecret {}",clientSecret);
