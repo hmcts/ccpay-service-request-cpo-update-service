@@ -48,3 +48,10 @@ amqp:
     topic: ${AMQP_TOPIC_NAME:dummy}
     sharedAccessKeyValue: ${AMQP_SHARED_ACCESS_KEY_VALUE:dummy}
     subscription: ${AMQP_SUBSCRIPTION:dummy}
+
+
+
+
+cpo:
+  callbackBaseUrl: http://localhost:3200
+  callbackPath: /case-payment-orders

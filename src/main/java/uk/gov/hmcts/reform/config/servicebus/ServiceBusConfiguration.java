@@ -1,6 +1,5 @@
-package uk.gov.hmcts.payments.config.servicebus;
+package uk.gov.hmcts.reform.config.servicebus;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microsoft.azure.servicebus.ExceptionPhase;
 import com.microsoft.azure.servicebus.IMessage;
 import com.microsoft.azure.servicebus.IMessageHandler;
@@ -9,14 +8,17 @@ import com.microsoft.azure.servicebus.ReceiveMode;
 import com.microsoft.azure.servicebus.SubscriptionClient;
 import com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder;
 import com.microsoft.azure.servicebus.primitives.ServiceBusException;
+import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import uk.gov.hmcts.reform.exceptions.InvalidCpoUpdateRequestException;
+import uk.gov.hmcts.reform.exceptions.MaxTryExceededException;
+import uk.gov.hmcts.reform.services.ServiceBusMessageService;
 
-import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Duration;
@@ -24,6 +26,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Configuration
 public class ServiceBusConfiguration {
@@ -43,10 +46,13 @@ public class ServiceBusConfiguration {
     @Value("${amqp.jrd.subscription}")
     private String subscription;
 
+    @Autowired
+    private ServiceBusMessageService serviceBusMessageService;
+
     private static Logger log = LoggerFactory.getLogger(ServiceBusConfiguration.class);
 
     @Bean
-    public SubscriptionClient getSubscriptionClient() throws URISyntaxException, ServiceBusException,
+    public SubscriptionClient receiveClient() throws URISyntaxException, ServiceBusException,
         InterruptedException {
         log.info(" host {}",host);
         log.info(" sharedAccessKeyName {}",sharedAccessKeyName);
@@ -70,22 +76,27 @@ public class ServiceBusConfiguration {
     CompletableFuture<Void> registerMessageHandlerOnClient(@Autowired SubscriptionClient receiveClient)
         throws ServiceBusException, InterruptedException {
 
-        log.info("Calling registerMessageHandlerOnClient");
-
         IMessageHandler messageHandler = new IMessageHandler() {
 
+            @SneakyThrows
             @Override
             public CompletableFuture<Void> onMessageAsync(IMessage message) {
                 log.info("RECEIVED");
                 List<byte[]> body = message.getMessageBody().getBinaryData();
+                AtomicBoolean result = new AtomicBoolean();
                 try {
-                    processMessage(body);
-                    return receiveClient.completeAsync(message.getLockToken());
+                    serviceBusMessageService.processMessageFromTopic(body, result);
+                    if (result.get()) {
+                        return receiveClient.completeAsync(message.getLockToken());
+                    }
+                } catch (MaxTryExceededException e) {
+                    return receiveClient.deadLetterAsync(message.getLockToken(),e.getServer(),e.getStatus().toString());
+                } catch (InvalidCpoUpdateRequestException e) {
+                    return receiveClient.deadLetterAsync(message.getLockToken(),e.getServer(),e.getStatus().toString());
                 } catch (Exception e) {
-                    log.info("e");
+                    log.info(e.getMessage());
                 }
                 return null;
-
             }
 
             @Override
@@ -103,9 +114,5 @@ public class ServiceBusConfiguration {
         return null;
     }
 
-    private void processMessage(List<byte[]> body) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        String message = mapper.writeValueAsString(mapper.readValue(body.get(0), Object.class));
-        log.info(message);
-    }
+
 }

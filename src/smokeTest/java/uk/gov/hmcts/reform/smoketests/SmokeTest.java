@@ -1,4 +1,4 @@
-package uk.gov.hmcts.payments.smoketests;
+package uk.gov.hmcts.reform.smoketests;
 
 import groovy.util.logging.Slf4j;
 import io.restassured.RestAssured;
