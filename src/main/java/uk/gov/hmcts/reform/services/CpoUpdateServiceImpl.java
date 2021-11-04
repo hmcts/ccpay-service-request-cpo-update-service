@@ -86,6 +86,7 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
 
     private String getServiceAuthorisationToken() {
         try {
+            LOG.info("authTokenGenerator.generate() {}",authTokenGenerator.generate());
             return authTokenGenerator.generate();
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             throw new CpoUpdateException("S2S",e.getStatusCode(),e);
@@ -96,6 +97,7 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
 
     private String getAccessToken() {
         IdamTokenResponse idamTokenResponse = idamService.getSecurityTokens();
+        LOG.info("idamTokenResponse {}",idamTokenResponse.getAccessToken());
         return idamTokenResponse.getAccessToken();
     }
 }
