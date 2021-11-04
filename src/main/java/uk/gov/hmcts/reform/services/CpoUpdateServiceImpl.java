@@ -86,8 +86,9 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
 
     private String getServiceAuthorisationToken() {
         try {
-            LOG.info("authTokenGenerator.generate() {}",authTokenGenerator.generate());
-            return authTokenGenerator.generate();
+            String serviceAuthToken = authTokenGenerator.generate();
+            LOG.info("authTokenGenerator.generate() {}",serviceAuthToken);
+            return serviceAuthToken;
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             throw new CpoUpdateException("S2S",e.getStatusCode(),e);
         } catch (Exception e) {
