@@ -60,8 +60,8 @@ class CpoUpdateServiceTest {
 
     @BeforeEach
     public void setUp() {
-        ReflectionTestUtils.setField(cpoUpdateService, "cpoCallBackBaseUrl", "http://localhost:3000");
-        ReflectionTestUtils.setField(cpoUpdateService, "callbackBasePath", "/cpopath");
+        ReflectionTestUtils.setField(cpoUpdateService, "cpoBaseUrl", "http://localhost:3000");
+        ReflectionTestUtils.setField(cpoUpdateService, "cpoPath", "/cpopath");
     }
 
     @Test

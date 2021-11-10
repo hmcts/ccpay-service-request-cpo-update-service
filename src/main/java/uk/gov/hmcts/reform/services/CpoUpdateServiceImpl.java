@@ -40,11 +40,11 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
     @Qualifier("restTemplateCpo")
     private RestTemplate restTemplateCpo;
 
-    @Value("${cpo.callbackBaseUrl}")
-    private String cpoCallBackBaseUrl;
+    @Value("${cpo.baseUrl}")
+    private String cpoBaseUrl;
 
-    @Value("${cpo.callbackPath}")
-    private String callbackBasePath;
+    @Value("${cpo.path}")
+    private String cpoPath;
 
     private static final Logger LOG = LoggerFactory.getLogger(CpoUpdateServiceImpl.class);
 
@@ -53,7 +53,7 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
     public void updateCpoServiceWithPayment(CpoUpdateServiceRequest cpoUpdateServiceRequest) {
         LOG.info("updateCpoServiceWithPayment");
         UriComponentsBuilder builder = UriComponentsBuilder.newInstance()
-                                            .fromUriString(cpoCallBackBaseUrl + callbackBasePath);
+                                            .fromUriString(cpoBaseUrl + cpoPath);
         LOG.info("CPO URL {}",builder.toUriString());
         try {
             restTemplateCpo.exchange(builder.toUriString(), HttpMethod.POST,

@@ -43,7 +43,7 @@ idam:
     totp_secret: ${OIDC_S2S_SECRET:dummy}
     microservice: ${OIDC_S2S_MICROSERVICE_NAME:dummy}
 cpo:
-  callbackBaseUrl: ${CPO_CALLBACK_URL:http://localhost:3200}
-  callbackPath: ${CPO_CALLBACK_PATH:/case-payment-orders}
+  baseUrl: ${CPO_URL:http://localhost:3200}
+  path: ${CPO_PATH:/case-payment-orders}
 
 

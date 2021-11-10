@@ -53,5 +53,5 @@ amqp:
 
 
 cpo:
-  callbackBaseUrl: http://localhost:3200
-  callbackPath: /case-payment-orders
+  baseUrl: http://localhost:3200
+  path: /case-payment-orders
