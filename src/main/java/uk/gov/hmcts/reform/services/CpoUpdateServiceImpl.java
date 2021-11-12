@@ -50,7 +50,7 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
     private static final Logger LOG = LoggerFactory.getLogger(CpoUpdateServiceImpl.class);
 
     @Override
-    @Retryable(value = CpoUpdateException.class,backoff = @Backoff(delay = 60000))
+    @Retryable(value = CpoUpdateException.class,backoff = @Backoff(delay = 60_000))
     public void updateCpoServiceWithPayment(CpoUpdateServiceRequest cpoUpdateServiceRequest) {
         LOG.info("updateCpoServiceWithPayment");
         UriComponentsBuilder builder = UriComponentsBuilder.newInstance()
