@@ -9,6 +9,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
@@ -49,7 +50,7 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
     private static final Logger LOG = LoggerFactory.getLogger(CpoUpdateServiceImpl.class);
 
     @Override
-    @Retryable(CpoUpdateException.class)
+    @Retryable(value = CpoUpdateException.class,backoff = @Backoff(delay = 60000))
     public void updateCpoServiceWithPayment(CpoUpdateServiceRequest cpoUpdateServiceRequest) {
         LOG.info("updateCpoServiceWithPayment");
         UriComponentsBuilder builder = UriComponentsBuilder.newInstance()
