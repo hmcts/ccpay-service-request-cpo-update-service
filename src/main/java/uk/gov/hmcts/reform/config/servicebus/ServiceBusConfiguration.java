@@ -46,6 +46,9 @@ public class ServiceBusConfiguration {
     @Value("${amqp.jrd.subscription}")
     private String subscription;
 
+    @Value("${thread.count}")
+    private int threadCount;
+
     @Autowired
     private ServiceBusMessageService serviceBusMessageService;
 
@@ -106,9 +109,9 @@ public class ServiceBusConfiguration {
             }
         };
 
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        ExecutorService executorService = Executors.newFixedThreadPool(threadCount);
         receiveClient.registerMessageHandler(
-            messageHandler, new MessageHandlerOptions(1,
+            messageHandler, new MessageHandlerOptions(threadCount,
                                                       false, Duration.ofHours(1), Duration.ofMinutes(5)),
             executorService);
         return null;

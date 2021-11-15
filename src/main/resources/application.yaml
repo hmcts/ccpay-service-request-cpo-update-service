@@ -46,4 +46,5 @@ cpo:
   baseUrl: ${CPO_URL:http://localhost:3200}
   path: ${CPO_PATH:/case-payment-orders}
 
-
+thread:
+  count: ${THREAD_COUNT:4}
