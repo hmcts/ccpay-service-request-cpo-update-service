@@ -47,12 +47,12 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
     @Value("${cpo.path}")
     private String cpoPath;
 
-    private static final int delayCount = 30_000;
+    private static final int DELAY_COUNT = 30_000;
 
     private static final Logger LOG = LoggerFactory.getLogger(CpoUpdateServiceImpl.class);
 
     @Override
-    @Retryable(value = CpoUpdateException.class,backoff = @Backoff(delay = delayCount))
+    @Retryable(value = CpoUpdateException.class,backoff = @Backoff(delay = DELAY_COUNT))
     public void updateCpoServiceWithPayment(CpoUpdateServiceRequest cpoUpdateServiceRequest) {
         LOG.info("updateCpoServiceWithPayment");
         UriComponentsBuilder builder = UriComponentsBuilder.newInstance()
