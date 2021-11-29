@@ -48,4 +48,3 @@ cpo:
 
 thread:
   count: ${THREAD_COUNT:4}
-
