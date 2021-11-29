@@ -184,7 +184,7 @@ dependencies {
   implementation group: 'org.springframework', name: 'spring-aspects', version: '5.3.12'
   implementation group: 'org.hibernate', name: 'hibernate-validator', version: '7.0.1.Final'
 
-  compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+  compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
   annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
 
   implementation group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
