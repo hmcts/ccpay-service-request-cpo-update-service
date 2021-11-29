@@ -14,14 +14,14 @@ public class CpoUpdateServiceRequest {
 
     private String action;
 
-    private String caseId;
+    private Long caseId;
 
     private String orderReference;
 
     private String responsibleParty;
 
     public CpoUpdateServiceRequest(@JsonProperty(value = "action", required = true) String action,
-                                   @JsonProperty(value = "case_id", required = true) String caseId,
+                                   @JsonProperty(value = "case_id", required = true) Long caseId,
                                    @JsonProperty(value = "order_reference", required = true) String orderReference,
                                    @JsonProperty(value = "responsible_party", required = true)
                                        String responsibleParty) {
