@@ -36,7 +36,7 @@ class ServiceBusMessageServiceTest {
     @Test
     void processMessageFromTopicTest() throws IOException {
         CpoUpdateServiceRequest cpoUpdateServiceRequest = CpoUpdateServiceRequest.CpoUpdateServiceRequest()
-                                                            .caseId("case-id")
+                                                            .caseId(Long.valueOf(123))
                                                             .orderReference("order-reference")
                                                             .responsibleParty("responsible-party")
                                                             .action("action")
@@ -51,7 +51,7 @@ class ServiceBusMessageServiceTest {
     @Test
     void processMessageFromTopicWithInvalidRequestBodyShouldThrowInvalidCpoUpdateRequestException() throws IOException {
         CpoUpdateServiceRequest cpoUpdateServiceRequest = CpoUpdateServiceRequest.CpoUpdateServiceRequest()
-            .caseId("case-id")
+            .caseId(Long.valueOf(123))
             .orderReference("order-reference")
             .build();
         byte[] objAsBytes = cpoUpdateServiceRequest.toString().getBytes();

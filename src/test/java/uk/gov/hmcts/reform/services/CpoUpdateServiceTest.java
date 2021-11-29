@@ -145,7 +145,7 @@ class CpoUpdateServiceTest {
     private CpoUpdateServiceRequest getCpoUpdateServiceRequest() {
         return CpoUpdateServiceRequest.CpoUpdateServiceRequest()
             .action("Case Submit")
-            .caseId("2061729969689088")
+            .caseId(Long.valueOf(123))
             .orderReference("2021-11223344556")
             .responsibleParty("Jane Doe")
             .build();
