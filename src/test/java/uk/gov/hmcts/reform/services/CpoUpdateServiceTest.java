@@ -67,14 +67,14 @@ class CpoUpdateServiceTest {
     @Test
     void updateCpoServiceWithPaymentShouldUpdateCpoService() {
         Mockito.when(restTemplateCpo.exchange(anyString(),eq(HttpMethod.POST),Mockito.any(),eq(
-            ResponseEntity.class))).thenReturn(ResponseEntity.status(HttpStatus.OK).build());
+            String.class))).thenReturn(ResponseEntity.status(HttpStatus.OK).build());
         Mockito.when(idamService.getSecurityTokens()).thenReturn(idamTokenResponse);
         Mockito.when(authTokenGenerator.generate()).thenReturn(MOCK_S2S_TOKEN);
         cpoUpdateService.updateCpoServiceWithPayment(getCpoUpdateServiceRequest());
         Mockito.verify(authTokenGenerator).generate();
         Mockito.verify(idamService).getSecurityTokens();
         HttpEntity entity = getHttpEntity();
-        Mockito.verify(restTemplateCpo).exchange("http://localhost:3000/cpopath",HttpMethod.POST,entity,ResponseEntity.class);
+        Mockito.verify(restTemplateCpo).exchange("http://localhost:3000/cpopath",HttpMethod.POST,entity,String.class);
     }
 
 
@@ -82,7 +82,7 @@ class CpoUpdateServiceTest {
     void updateCpoServiceWithPaymentWhenServiceUnavailableShouldThrowCpoUpdateSection() {
 
         Mockito.when(restTemplateCpo.exchange(anyString(),eq(HttpMethod.POST),Mockito.any(),eq(
-            ResponseEntity.class))).thenThrow(new HttpClientErrorException(HttpStatus.SERVICE_UNAVAILABLE));
+            String.class))).thenThrow(new HttpClientErrorException(HttpStatus.SERVICE_UNAVAILABLE));
         Mockito.when(idamService.getSecurityTokens()).thenReturn(idamTokenResponse);
         Mockito.when(authTokenGenerator.generate()).thenReturn(MOCK_S2S_TOKEN);
         CpoUpdateException exception = assertThrows(CpoUpdateException.class,
@@ -93,7 +93,7 @@ class CpoUpdateServiceTest {
     @Test
     void updateCpoServiceWithPaymentWhenResourceNotAccesibleShouldThrowCpoUpdateSection() {
         Mockito.when(restTemplateCpo.exchange(anyString(),eq(HttpMethod.POST),Mockito.any(),eq(
-            ResponseEntity.class))).thenThrow(new ResourceAccessException(""));
+            String.class))).thenThrow(new ResourceAccessException(""));
         Mockito.when(idamService.getSecurityTokens()).thenReturn(idamTokenResponse);
         Mockito.when(authTokenGenerator.generate()).thenReturn(MOCK_S2S_TOKEN);
         CpoUpdateException exception = assertThrows(CpoUpdateException.class,
