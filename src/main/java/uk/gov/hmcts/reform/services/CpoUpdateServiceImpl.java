@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
@@ -60,7 +59,7 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
         LOG.info("CPO URL {}",builder.toUriString());
         try {
             restTemplateCpo.exchange(builder.toUriString(), HttpMethod.POST,
-                                     new HttpEntity<>(cpoUpdateServiceRequest, getHttpHeaders()), ResponseEntity.class);
+                                     new HttpEntity<>(cpoUpdateServiceRequest, getHttpHeaders()), String.class);
         } catch (HttpClientErrorException | HttpServerErrorException exception) {
             LOG.info(" exception {}",exception.getMessage());
             throw new CpoUpdateException("CPO",exception.getStatusCode(),exception);
