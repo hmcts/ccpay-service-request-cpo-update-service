@@ -48,3 +48,8 @@ cpo:
 
 thread:
   count: ${THREAD_COUNT:4}
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
