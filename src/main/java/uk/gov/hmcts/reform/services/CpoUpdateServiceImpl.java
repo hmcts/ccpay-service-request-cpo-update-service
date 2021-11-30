@@ -81,7 +81,7 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
 
     private MultiValueMap<String,String> getHttpHeaders() {
         MultiValueMap<String, String> inputHeaders = new LinkedMultiValueMap<>();
-        inputHeaders.put("content-type",Arrays.asList("application/json"));
+        inputHeaders.put("Content-Type",Arrays.asList("application/json"));
         inputHeaders.put("Authorization", Arrays.asList("Bearer " + getAccessToken()));
         inputHeaders.put("ServiceAuthorization", Arrays.asList(getServiceAuthorisationToken()));
         LOG.info("HttpHeader {}", inputHeaders);
