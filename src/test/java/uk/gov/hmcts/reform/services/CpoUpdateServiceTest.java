@@ -135,7 +135,7 @@ class CpoUpdateServiceTest {
 
     private HttpEntity<CpoUpdateServiceRequest> getHttpEntity() {
         MultiValueMap<String, String> inputHeaders = new LinkedMultiValueMap<>();
-        inputHeaders.put("content-type", Arrays.asList("application/json"));
+        inputHeaders.put("Content-Type", Arrays.asList("application/json"));
         inputHeaders.put("Authorization", Arrays.asList("Bearer " + idamTokenResponse.getAccessToken()));
         inputHeaders.put("ServiceAuthorization", Arrays.asList(MOCK_S2S_TOKEN));
         CpoUpdateServiceRequest cpoUpdateServiceRequest = getCpoUpdateServiceRequest();
