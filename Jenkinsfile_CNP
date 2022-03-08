@@ -17,10 +17,14 @@ def component = "service-request-cpo-update-service"
 
 def branchesToSync = ['demo', 'ithc', 'perftest']
 
+def vaultOverrides = [
+  'preview': 'aat',
+  'hmctsdemo': 'aat',
+]
+
 withPipeline(type, product, component) {
   enableAksStagingDeployment()
   overrideVaultEnvironments(vaultOverrides)
-  loadVaultSecrets(secrets)
   disableLegacyDeploymentOnAAT()
   disableLegacyDeployment()
   syncBranchesWithMaster(branchesToSync)
