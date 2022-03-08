@@ -17,28 +17,8 @@ def component = "service-request-cpo-update-service"
 
 def branchesToSync = ['demo', 'ithc', 'perftest']
 
-def vaultOverrides = [
-  'preview': 'aat',
-  'hmctsdemo': 'aat',
-]
-def secrets = [
-  'ccpay-${env}': [
-    secret('ccpay_service_request_cpo_update_topic_shared_access_key', 'AMQP_SHARED_ACCESS_KEY_VALUE'),
-    secret('service_request_cpo_update_service_s2s_secret', 'OIDC_S2S_SECRET')
-  ]
-]
-static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
-  [ $class: 'AzureKeyVaultSecret',
-    secretType: 'Secret',
-    name: secretName,
-    version: '',
-    envVariable: envVar
-  ]
-}
-
 withPipeline(type, product, component) {
   enableAksStagingDeployment()
-  loadVaultSecrets(secrets)
   disableLegacyDeploymentOnAAT()
   disableLegacyDeployment()
   syncBranchesWithMaster(branchesToSync)
