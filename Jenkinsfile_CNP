@@ -21,10 +21,17 @@ def vaultOverrides = [
   'preview': 'aat',
   'hmctsdemo': 'aat',
 ]
+def secrets = [
+  'ccpay-${env}': [
+    secret('ccpay_service_request_cpo_update_topic_shared_access_key', 'AMQP_SHARED_ACCESS_KEY_VALUE'),
+    secret('service_request_cpo_update_service_s2s_secret', 'OIDC_S2S_SECRET')
+  ]
+]
 
 withPipeline(type, product, component) {
   enableAksStagingDeployment()
   overrideVaultEnvironments(vaultOverrides)
+  loadVaultSecrets(secrets)
   disableLegacyDeploymentOnAAT()
   disableLegacyDeployment()
   syncBranchesWithMaster(branchesToSync)
