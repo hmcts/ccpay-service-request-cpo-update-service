@@ -22,5 +22,10 @@
    <suppress until="2022-03-30">
     <notes>Temporarily suppress. Hence this is suppressed</notes>
     <cve>CVE-2021-44832</cve>
+    <cve>CVE-2021-42550</cve>
+    <cve>CVE-2021-43797</cve>
+    <cve>CVE-2021-22060</cve>
+    <cve>CVE-2022-23181</cve>
+    <cve>CWE-862</cve>
    </suppress>
 </suppressions>
