@@ -20,7 +20,7 @@
     <cve>CVE-2021-42306</cve>
    </suppress>
    <suppress until="2022-03-30">
-    <notes>Temporarily suppress. Hence this is suppressed</notes>
+    <notes>Temporarily suppress. Hence this is being suppressed</notes>
     <cve>CVE-2021-44832</cve>
     <cve>CVE-2021-42550</cve>
     <cve>CVE-2021-43797</cve>
