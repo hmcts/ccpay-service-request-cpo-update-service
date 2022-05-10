@@ -55,7 +55,7 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
     public void updateCpoServiceWithPayment(CpoUpdateServiceRequest cpoUpdateServiceRequest) {
         LOG.info("updateCpoServiceWithPayment");
         UriComponentsBuilder builder = UriComponentsBuilder.newInstance()
-                                            .fromUriString(cpoBaseUrl + cpoPath);
+                                            .fromUriString(cpoBaseUrl + "cpoPath");
         LOG.info("CPO URL {}",builder.toUriString());
         try {
             restTemplateCpo.exchange(builder.toUriString(), HttpMethod.POST,
