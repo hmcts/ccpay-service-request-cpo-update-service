@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.services;
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -76,7 +77,6 @@ class CpoUpdateServiceTest {
         HttpEntity entity = getHttpEntity();
         Mockito.verify(restTemplateCpo).exchange("http://localhost:3000/cpopath",HttpMethod.POST,entity,String.class);
     }
-
 
     @Test
     void updateCpoServiceWithPaymentWhenServiceUnavailableShouldThrowCpoUpdateSection() {

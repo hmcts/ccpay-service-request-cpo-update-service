@@ -28,7 +28,7 @@ public class ServiceBusMessageServiceImpl implements ServiceBusMessageService {
         try {
             cpoUpdateServiceRequest = mapper.readValue(body.get(0), CpoUpdateServiceRequest.class);
         } catch (Exception e) {
-            throw new InvalidCpoUpdateRequestException("Bad Request", HttpStatus.BAD_REQUEST,e);
+            throw new InvalidCpoUpdateRequestException("Internal Server Error", HttpStatus.SERVICE_UNAVAILABLE,e);
         }
         String message = mapper.writeValueAsString(cpoUpdateServiceRequest);
         LOG.info(message);
