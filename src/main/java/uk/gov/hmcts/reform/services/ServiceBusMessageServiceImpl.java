@@ -30,10 +30,10 @@ public class ServiceBusMessageServiceImpl implements ServiceBusMessageService {
         } catch (Exception e) {
             throw new InvalidCpoUpdateRequestException("Bad Request", HttpStatus.BAD_REQUEST,e);
         }
-         if ("DLQTest".equalsIgnoreCase(cpoUpdateServiceRequest.getAction())) {
-                throw new InvalidCpoUpdateRequestException("Internal Server Error",
+        if ("DLQTest".equalsIgnoreCase(cpoUpdateServiceRequest.getAction())) {
+            throw new InvalidCpoUpdateRequestException("Internal Server Error",
                 HttpStatus.SERVICE_UNAVAILABLE, new IOException());
-            }
+        }
         String message = mapper.writeValueAsString(cpoUpdateServiceRequest);
         LOG.info(message);
         this.cpoUpdateService.updateCpoServiceWithPayment(cpoUpdateServiceRequest);
