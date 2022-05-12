@@ -59,6 +59,6 @@ class ServiceBusMessageServiceTest {
         InvalidCpoUpdateRequestException exception = assertThrows(InvalidCpoUpdateRequestException.class,
             () -> serviceBusMessageService.processMessageFromTopic(body, result)
         );
-        assertEquals(HttpStatus.SERVICE_UNAVAILABLE, exception.getStatus(),"Status should be Service Unavailable");
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getStatus(),"Status should be Bad Request");
     }
 }
