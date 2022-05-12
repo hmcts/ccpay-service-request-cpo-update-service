@@ -28,9 +28,7 @@
     <cve>CVE-2022-23181</cve>
    </suppress>
   <suppress until="2022-06-30">
-    <notes>Temporary suppression
-    </notes>
-    , CVE-2013-4152, CVE-2014-0054, CVE-2013-7315, CVE-2022-23181
+    <notes>Temporary suppression</notes>
     <cve>CVE-2021-42306</cve>
     <cve>CVE-2022-25647</cve>
     <cve>CVE-2020-36518</cve>
