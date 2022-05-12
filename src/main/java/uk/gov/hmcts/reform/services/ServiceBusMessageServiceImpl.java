@@ -27,13 +27,16 @@ public class ServiceBusMessageServiceImpl implements ServiceBusMessageService {
         CpoUpdateServiceRequest cpoUpdateServiceRequest;
         try {
             cpoUpdateServiceRequest = mapper.readValue(body.get(0), CpoUpdateServiceRequest.class);
+            LOG.info("CPO UPDATE SERVICE REQUEST Read from Topic *********");
         } catch (Exception e) {
             throw new InvalidCpoUpdateRequestException("Bad Request", HttpStatus.BAD_REQUEST,e);
         }
         if ("DLQTest".equalsIgnoreCase(cpoUpdateServiceRequest.getAction())) {
+            LOG.info("INCORRECT ACTION ----   THROWING InvalidCpoUpdateRequestException &&&&&&&");
             throw new InvalidCpoUpdateRequestException("Internal Server Error",
                 HttpStatus.SERVICE_UNAVAILABLE, new IOException());
         }
+        LOG.info("DOESN't REACH HERE ?????");
         String message = mapper.writeValueAsString(cpoUpdateServiceRequest);
         LOG.info(message);
         this.cpoUpdateService.updateCpoServiceWithPayment(cpoUpdateServiceRequest);
