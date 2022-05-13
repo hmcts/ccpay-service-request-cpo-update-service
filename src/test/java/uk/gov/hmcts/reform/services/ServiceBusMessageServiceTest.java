@@ -60,6 +60,5 @@ class ServiceBusMessageServiceTest {
             () -> serviceBusMessageService.processMessageFromTopic(body, result)
         );
         assertEquals(HttpStatus.BAD_REQUEST, exception.getStatus(),"Status should be Bad Request");
-        assertEquals("Bad Request", exception.getServer(),"Exception should be Bad Request");
     }
 }

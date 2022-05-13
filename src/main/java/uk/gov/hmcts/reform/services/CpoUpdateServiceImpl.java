@@ -54,6 +54,8 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
     @Retryable(value = CpoUpdateException.class,backoff = @Backoff(delay = DELAY_COUNT))
     public void updateCpoServiceWithPayment(CpoUpdateServiceRequest cpoUpdateServiceRequest) {
         LOG.info("updateCpoServiceWithPayment");
+        LOG.info("Action , {}",cpoUpdateServiceRequest.getAction());
+        LOG.info("Order reference , {}",cpoUpdateServiceRequest.getOrderReference());
         UriComponentsBuilder builder = UriComponentsBuilder.newInstance()
                                             .fromUriString(cpoBaseUrl + cpoPath);
         LOG.info("CPO URL {}",builder.toUriString());
