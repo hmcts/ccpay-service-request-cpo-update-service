@@ -30,7 +30,6 @@
 
   <suppress until="2022-09-30">
     <notes>Temporarily suppress. These will be fixed in a new PR, need demo to go green.</notes>
-    , , , , , , , , , , , , , , , , , , , ,
     <cve>CVE-2022-25647</cve>
     <cve>CVE-2020-36518</cve>
     <cve>CVE-2022-33915</cve>
