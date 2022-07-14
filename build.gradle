@@ -67,8 +67,11 @@ test {
 task functional(type: Test) {
   description = "Runs functional tests"
   group = "Verification"
+  include "uk/gov/hmcts/reform/cpo/functional/**"
   testClassesDirs = sourceSets.functionalTest.output.classesDirs
   classpath = sourceSets.functionalTest.runtimeClasspath
+  enableAssertions = true
+  scanForTestClasses = true
 }
 
 task integration(type: Test) {
@@ -136,6 +139,10 @@ sonarqube {
   }
 }
 
+pmdFunctionalTest.enabled(false)
+
+checkstyleFunctionalTest.enabled(false)
+
 // before committing a change, make sure task still works
 dependencyUpdates {
   def isNonStable = { String version ->
@@ -175,7 +182,17 @@ ext {
   reformLoggingVersion = "5.1.9"
 }
 
+
+def versions = [
+  restAssured : '4.2.0',
+  serenity                : '2.2.12',
+  serenityCucumber        : '1.9.51'
+]
+
 dependencies {
+
+  compileOnly 'com.sun.xml.bind:jaxb-osgi:2.3.1'
+  implementation 'junit:junit:4.13.1'
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop'
@@ -196,7 +213,7 @@ dependencies {
   implementation group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: '2.17.1'
 
   implementation group: 'com.azure', name: 'azure-core', version: '1.21.0'
-  implementation group: 'com.azure', name: 'azure-messaging-servicebus', version: '7.4.2'
+  implementation group: 'com.azure', name: 'azure-messaging-servicebus', version: '7.10.0'
   implementation group: 'com.microsoft.azure', name: 'azure-servicebus', version: '3.6.5'
 
   implementation group: 'uk.gov.hmcts.reform.auth', name: 'auth-checker-lib', version: '2.1.4'
@@ -207,7 +224,7 @@ dependencies {
   testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '3.3.0'
 
 
-  testImplementation(platform('org.junit:junit-bom:5.8.1'))
+  testImplementation(platform('org.junit:junit-bom:5.8.2'))
   testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', {
     exclude group: 'junit', module: 'junit'
     exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
@@ -216,7 +233,20 @@ dependencies {
   integrationTestImplementation sourceSets.main.runtimeClasspath
   integrationTestImplementation sourceSets.test.runtimeClasspath
 
+  functionalTestAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+  functionalTestAnnotationProcessor group :'org.projectlombok', name:'lombok', version:'1.18.12'
+  functionalTestImplementation group: 'net.serenity-bdd', name: 'serenity-core', version: versions.serenity
+  functionalTestImplementation group: 'net.serenity-bdd', name: 'serenity-cucumber', version: versions.serenityCucumber
+  functionalTestImplementation group: 'net.serenity-bdd', name: 'serenity-junit', version: versions.serenity
+  functionalTestImplementation group: 'net.serenity-bdd', name: 'serenity-rest-assured', version: versions.serenity
+  functionalTestImplementation group: 'net.serenity-bdd', name: 'serenity-spring', version: versions.serenity
+  functionalTestImplementation group: 'net.serenity-bdd', name: 'serenity-screenplay', version: versions.serenity
+  functionalTestImplementation group: 'io.rest-assured', name: 'xml-path', version: versions.restAssured
+  functionalTestImplementation group: 'io.rest-assured', name: 'json-path', version: versions.restAssured
+  functionalTestImplementation group: 'org.jboss.aerogear', name: 'aerogear-otp-java', version:'1.0.0'
   functionalTestImplementation sourceSets.main.runtimeClasspath
+  functionalTestImplementation sourceSets.test.runtimeClasspath
+
 
   smokeTestImplementation sourceSets.main.runtimeClasspath
   smokeTestImplementation sourceSets.test.runtimeClasspath
@@ -234,6 +264,10 @@ bootJar {
 
 // Gradle 7.x issue, workaround from: https://github.com/gradle/gradle/issues/17236#issuecomment-894768083
 rootProject.tasks.named("processSmokeTestResources") {
+  duplicatesStrategy = 'include'
+}
+
+rootProject.tasks.named("processFunctionalTestResources") {
   duplicatesStrategy = 'include'
 }
 
