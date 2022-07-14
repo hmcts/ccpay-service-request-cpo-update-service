@@ -15,16 +15,68 @@
     <cve>CVE-2020-10663</cve>
     <cve>CVE-2020-7712</cve>
    </suppress>
-   <suppress until="2022-03-30">
-    <notes>A vulnerability in all versions of adal4j, this library is an internal dependency in azure libraries. Hence this is suppressed</notes>
-    <cve>CVE-2021-42306</cve>
-   </suppress>
-   <suppress until="2022-03-30">
+   <suppress until="2022-09-30">
     <notes>Temporarily suppress. Hence this is being suppressed</notes>
     <cve>CVE-2021-44832</cve>
     <cve>CVE-2021-42550</cve>
     <cve>CVE-2021-43797</cve>
     <cve>CVE-2021-22060</cve>
     <cve>CVE-2022-23181</cve>
+    <cve>CVE-2022-22971</cve>
    </suppress>
+
+<!--  CVE major issue fix start-->
+  <suppress until="2022-09-30">
+    <notes>jackson-databind major release 2.11.* does not have a version available with vulnerability patched.</notes>
+    <cve>CVE-2020-36518</cve>
+  </suppress>
+
+  <suppress until="2022-09-30">
+    <notes>vulnerability in Adal4j v1.6.7 which is the most recent major release.</notes>
+    <cve>CVE-2021-42306</cve>
+  </suppress>
+
+  <suppress until="2022-09-30">
+    <notes>Tomcat-embed-core 9.0.64 most recent major release is still vulnerable.</notes>
+    <cve>CVE-2022-34305</cve>
+  </suppress>
+
+  <suppress until="2022-09-30">
+    <notes>spring-security-crypto 5.5.8 most recent major release is still vulnerable, will need to upgrade major version.</notes>
+    <cve>CVE-2020-5408</cve>
+  </suppress>
+
+  <suppress until="2022-09-30">
+    <notes>okhttp 3.14.9 most recent major release is still vulnerable, will need to upgrade major version.</notes>
+    <cve>CVE-2021-0341</cve>
+  </suppress>
+
+  <suppress until="2022-09-30">
+    <notes>spring-security-rsa version 1.0.11.RELEASE most recent release in the major still vulnerable</notes>
+    <cve>CVE-2022-22976</cve>
+    <cve>CVE-2022-22978</cve>
+  </suppress>
+
+  <suppress until="2022-09-30">
+    <notes>spring-web version 5.3.21 most recent release in the major still vulnerable</notes>
+    <cve>CVE-2016-1000027</cve>
+  </suppress>
+
+  <suppress until="2022-09-30">
+    <notes>spring-plugin-core and spring-plugin-metadata are both most recent version 2.0.0.RELEASE but still vulnerable to the issues below</notes>
+    <cve>CVE-2013-4152</cve>
+    <cve>CVE-2013-7315</cve>
+    <cve>CVE-2014-0054</cve>
+    <cve>CVE-2018-11039</cve>
+    <cve>CVE-2018-11040</cve>
+    <cve>CVE-2018-1257</cve>
+    <cve>CVE-2020-5421</cve>
+    <cve>CVE-2022-22950</cve>
+    <cve>CVE-2022-22965</cve>
+    <cve>CVE-2022-22968</cve>
+    <cve>CVE-2022-22970</cve>
+  </suppress>
+
+<!--  CVE major issue fix end-->
+
 </suppressions>
