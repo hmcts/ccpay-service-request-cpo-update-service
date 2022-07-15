@@ -3,16 +3,22 @@ variable "product" {
   default = "ccpay"
 }
 
-variable "component" {}
+variable "component" {
+  type    = string
+}
 
 variable "location" {
   type    = string
   default = "UK South"
 }
 
-variable "env" {}
+variable "env" {
+  type = string
+}
 
-variable "subscription" {}
+variable "subscription" {
+type = string
+}
 
 variable "deployment_namespace" {}
 
