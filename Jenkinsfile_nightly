@@ -9,6 +9,6 @@ properties([
 
 def type = "java"
 def product = "ccpay"
-def component = "service-request-cpo-update-service"
+def component = "cpo-update-service"
 
 withNightlyPipeline(type, product, component) {}
