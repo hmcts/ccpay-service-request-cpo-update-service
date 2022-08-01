@@ -31,7 +31,7 @@ public class ServiceBusMessageServiceImpl implements ServiceBusMessageService {
             throw new InvalidCpoUpdateRequestException("Bad Request", HttpStatus.BAD_REQUEST,e);
         }
         String message = mapper.writeValueAsString(cpoUpdateServiceRequest);
-        LOG.info(message);
+        LOG.info("CPO message body: {}", message);
         this.cpoUpdateService.updateCpoServiceWithPayment(cpoUpdateServiceRequest);
         result.set(Boolean.TRUE);
     }
