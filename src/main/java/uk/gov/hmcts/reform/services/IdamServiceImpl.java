@@ -58,9 +58,9 @@ public class IdamServiceImpl implements IdamService {
         LOG.info("getSecurityTokens");
         LOG.info("clientId {}",clientId);
         LOG.info("clientSecret {}",clientSecret);
-        if (null != idamBaseUrl)
-            idamBaseUrl = idamBaseUrl.replace(".prod","");
-
+        if (null != idamBaseUrl) {
+            idamBaseUrl = idamBaseUrl.replace(".prod", "");
+        }
         UriComponentsBuilder builder = UriComponentsBuilder.newInstance()
             .fromUriString(idamBaseUrl + TOKEN_ENDPOINT_PATH)
             .queryParam("client_id",clientId)
