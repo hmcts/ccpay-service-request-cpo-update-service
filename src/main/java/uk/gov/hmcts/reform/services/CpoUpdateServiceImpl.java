@@ -60,11 +60,12 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
         try {
             restTemplateCpo.exchange(builder.toUriString(), HttpMethod.POST,
                                      new HttpEntity<>(cpoUpdateServiceRequest, getHttpHeaders()), String.class);
+            LOG.info("CPO call completed successfully");
         } catch (HttpClientErrorException | HttpServerErrorException exception) {
-            LOG.info(" exception {}",exception.getMessage());
+            LOG.info("CPO call exception {}",exception.getMessage());
             throw new CpoUpdateException("CPO",exception.getStatusCode(),exception);
         } catch (ResourceAccessException exception) {
-            LOG.info(" exception {}",exception.getMessage());
+            LOG.info("CPO call exception {}",exception.getMessage());
             throw new CpoUpdateException("CPO", HttpStatus.SERVICE_UNAVAILABLE,exception);
         }
     }
