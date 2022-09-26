@@ -15,7 +15,7 @@
     <cve>CVE-2020-10663</cve>
     <cve>CVE-2020-7712</cve>
    </suppress>
-   <suppress until="2022-09-30">
+   <suppress until="2022-12-31">
     <notes>Temporarily suppress. Hence this is being suppressed</notes>
     <cve>CVE-2021-44832</cve>
     <cve>CVE-2021-42550</cve>
@@ -61,7 +61,7 @@
     <notes>spring-web version 5.3.21 most recent release in the major still vulnerable</notes>
     <cve>CVE-2016-1000027</cve>
   </suppress>
-  
+
   <suppress until="2022-12-31">
     <notes>
       The RipudamanKaushikDal/projects repository through 2022-04-03 on GitHub allows absolute path traversal
