@@ -105,8 +105,8 @@
   </suppress>
   <suppress until="2023-03-31">
         <notes>
-          In FasterXML jackson-databind before 2.14.0-rc1, resource exhaustion can occur because of a lack of a check in 
-          primitive value deserializers to avoid deep wrapper array nesting, 
+          In FasterXML jackson-databind before 2.14.0-rc1, resource exhaustion can occur because of a lack of a check in
+          primitive value deserializers to avoid deep wrapper array nesting,
           when the UNWRAP_SINGLE_VALUE_ARRAYS feature is enabled
         </notes>
         <cve>CVE-2022-42003</cve>
@@ -117,6 +117,14 @@
           apache commons_net
         </notes>
         <cve>CVE-2021-37533</cve>
+  </suppress>
+  <suppress until="2023-03-31">
+    <notes>
+      Snake yaml and latencyUtils
+    </notes>
+    <cve>CVE-2021-4235</cve>
+    <cve>CVE-2021-4277</cve>
+    <cve>CVE-2022-3064</cve>
   </suppress>
 <!--  CVE major issue fix end-->
 
