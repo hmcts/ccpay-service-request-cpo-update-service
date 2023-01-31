@@ -20,7 +20,11 @@ variable "subscription" {
 type = string
 }
 
-variable "deployment_namespace" {}
+variable "deployment_namespace" {
+  type = string
+  default = ""
+  description = "Deployment Namespace. Optional (only used in PRs)"
+}
 
 variable "common_tags" {
   type = map(string)
