@@ -33,6 +33,18 @@
     <cve>CVE-2022-31197</cve>
     <cve>CVE-2022-41946</cve>
   </suppress>
+  <suppress until="2023-06-30">
+    <notes>
+      adal4 version 1.6.7 is latest version, requires major update.
+    </notes>
+    <cve>CVE-2021-42306</cve>
+  </suppress>
+  <suppress until="2023-06-30">
+    <notes>
+      woodstox-core version 6.2.8 is latest version, requires major update.
+    </notes>
+    <cve>CVE-2022-40152</cve>
+  </suppress>
 <!--  CVE major issue fix end-->
 
 </suppressions>
