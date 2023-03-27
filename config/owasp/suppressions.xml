@@ -139,6 +139,11 @@
     </notes>
     <cve>CVE-2022-45688</cve>
   </suppress>
+  <suppress>
+    <notes>
+    </notes>
+    <cve></cve>
+  </suppress>
 <!--  CVE major issue fix end-->
 
 </suppressions>
