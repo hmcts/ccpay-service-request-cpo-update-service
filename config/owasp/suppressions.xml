@@ -140,7 +140,7 @@
     <cve>CVE-2022-45688</cve>
   </suppress>
   <suppress>
-    <notes>
+    <notes> note
     </notes>
     <cve></cve>
   </suppress>
