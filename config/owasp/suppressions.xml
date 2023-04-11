@@ -45,6 +45,12 @@
     </notes>
     <cve>CVE-2022-40152</cve>
   </suppress>
+  <suppress until="2023-03-31">
+    <notes>
+      com.fasterxml.woodstox
+    </notes>
+    <cve>CVE-2022-40152</cve>
+  </suppress>
 <!--  CVE major issue fix end-->
 
 </suppressions>
