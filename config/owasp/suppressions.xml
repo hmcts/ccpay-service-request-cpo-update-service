@@ -51,7 +51,17 @@
     </notes>
     <cve>CVE-2022-40152</cve>
   </suppress>
-
+  <suppress until="2023-06-30">
+    <notes>
+      spring-webmvc version 5.3.26 casues issues that fail unit test cases due it not being able to create test environment correctly.
+    </notes>
+    <cve>CVE-2023-20861</cve>
+  </suppress>
+  <suppress>
+    <notes>In spring framework versions prior to 5.2.24 release+ ,5.3.27+ and 6.0.8+ , it is possible for a user to provide a specially crafted SpEL expression that may cause a denial-of-service (DoS) condition.
+    </notes>
+    <cve>CVE-2023-20863</cve>
+  </suppress>
   <suppress>
     <notes>
       jackson-databind 2.10.x through 2.12.x before 2.12.6 and 2.13.x before 2.13.1 allows attackers to cause a denial of service (2 GB transient heap usage per read) in uncommon situations involving JsonNode JDK serialization.
@@ -59,5 +69,4 @@
     <cve>CVE-2021-46877</cve>
   </suppress>
 <!--  CVE major issue fix end-->
-
 </suppressions>
