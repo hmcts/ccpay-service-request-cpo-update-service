@@ -201,8 +201,8 @@ dependencies {
   implementation group: 'org.springframework', name: 'spring-aspects', version: '5.3.12'
   implementation group: 'org.hibernate', name: 'hibernate-validator', version: '7.0.1.Final'
 
-  compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
-  annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+  compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
+  annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
 
   implementation group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
 
@@ -233,8 +233,8 @@ dependencies {
   integrationTestImplementation sourceSets.main.runtimeClasspath
   integrationTestImplementation sourceSets.test.runtimeClasspath
 
-  functionalTestAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
-  functionalTestAnnotationProcessor group :'org.projectlombok', name:'lombok', version:'1.18.12'
+  functionalTestAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
+  functionalTestAnnotationProcessor group :'org.projectlombok', name:'lombok', version:'1.18.28'
   functionalTestImplementation group: 'net.serenity-bdd', name: 'serenity-core', version: versions.serenity
   functionalTestImplementation group: 'net.serenity-bdd', name: 'serenity-cucumber', version: versions.serenityCucumber
   functionalTestImplementation group: 'net.serenity-bdd', name: 'serenity-junit', version: versions.serenity
