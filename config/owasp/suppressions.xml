@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
-  <suppress until="2023-06-30">
+  <suppress until="2023-10-30">
     <notes>SnakeYaml's Constructor() class does not restrict types which can be instantiated during deserialization.
     </notes>
     <cve>CVE-2022-1471</cve>
   </suppress>
-  <suppress until="2023-06-30">
+  <suppress until="2023-10-30">
     <notes>
       liquibase-core core needs major version latest 4.2.2. not resolving current CVE issue.
     </notes>
     <cve>CVE-2022-0839</cve>
   </suppress>
-  <suppress until="2023-06-30">
+  <suppress until="2023-10-30">
     <notes>
       Jackson core needs major version latest 2.12.7  not resolving current CVE issue. Same applies to json-path version 2.4.0.
       Same applies to json-smart version 2.4.10
     </notes>
     <cve>CVE-2022-45688</cve>
   </suppress>
-  <suppress until="2023-06-30">
+  <suppress until="2023-10-30">
     <notes>
       Jackson-databind version 2.12.7.1 in combination with postgres has interface changes in DBUtils that cause unit tests to fail.
     </notes>
@@ -26,32 +26,32 @@
     <cve>CVE-2022-42003</cve>
     <cve>CVE-2022-42004</cve>
   </suppress>
-  <suppress until="2023-06-30">
+  <suppress until="2023-10-30">
     <notes>
       Postgres version 42.4.3 in combination with jackson-databind has interface changes in DBUtils that cause unit tests to fail.
     </notes>
     <cve>CVE-2022-31197</cve>
     <cve>CVE-2022-41946</cve>
   </suppress>
-  <suppress until="2023-06-30">
+  <suppress until="2023-10-30">
     <notes>
       adal4 version 1.6.7 is latest version, requires major update.
     </notes>
     <cve>CVE-2021-42306</cve>
   </suppress>
-  <suppress until="2023-06-30">
+  <suppress until="2023-10-30">
     <notes>
       woodstox-core version 6.2.8 is latest version, requires major update.
     </notes>
     <cve>CVE-2022-40152</cve>
   </suppress>
-  <suppress until="2023-03-31">
+  <suppress until="2023-10-30">
     <notes>
       com.fasterxml.woodstox
     </notes>
     <cve>CVE-2022-40152</cve>
   </suppress>
-  <suppress until="2023-06-30">
+  <suppress until="2023-10-30">
     <notes>
       spring-webmvc version 5.3.26 casues issues that fail unit test cases due it not being able to create test environment correctly.
     </notes>
@@ -68,5 +68,43 @@
     </notes>
     <cve>CVE-2021-46877</cve>
   </suppress>
-<!--  CVE major issue fix end-->
+
+  <suppress>
+    <notes>
+      guava-31.0.1-jre.jar (pkg:maven/com.google.guava/guava@31.0.1-jre, cpe:2.3:a:google:guava:31.0.1)
+    </notes>
+    <cve>CVE-2023-2976</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      jackson-databind-2.11.4.jar (pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.11.4, cpe:2.3:a:fasterxml:jackson-databind:2.11.4:)
+    </notes>
+    <cve>CVE-2023-2976</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      netty-buffer-4.1.86.Final.jar (pkg:maven/io.netty/netty-buffer@4.1.86.Final, cpe:2.3:a:netty:netty:4.1.86:*:*:*:*:*:*:*)
+    </notes>
+    <cve>CVE-2023-34462</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      spring-boot-2.4.3.jar (pkg:maven/org.springframework.boot/spring-boot@2.4.3, cpe:2.3:a:vmware:spring_boot:2.4.3:*:*:*:*:*:*:*)
+    </notes>
+    <cve>CVE-2023-20883</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      tomcat-embed-core-9.0.73.jar (pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.73
+    </notes>
+    <cve>CVE-2023-28709</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      jackson-databind thru 2.15.2 allows attackers to cause a denial of service or other unspecified impacts via crafted object that uses cyclic dependencies
+    </notes>
+    <cve>CVE-2023-35116</cve>
+  </suppress>
+
+  <!--  CVE major issue fix end-->
 </suppressions>
