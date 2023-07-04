@@ -68,5 +68,43 @@
     </notes>
     <cve>CVE-2021-46877</cve>
   </suppress>
-<!--  CVE major issue fix end-->
+
+  <suppress>
+    <notes>
+      guava-31.0.1-jre.jar (pkg:maven/com.google.guava/guava@31.0.1-jre, cpe:2.3:a:google:guava:31.0.1)
+    </notes>
+    <cve>CVE-2023-2976</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      jackson-databind-2.11.4.jar (pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.11.4, cpe:2.3:a:fasterxml:jackson-databind:2.11.4:)
+    </notes>
+    <cve>CVE-2023-2976</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      netty-buffer-4.1.86.Final.jar (pkg:maven/io.netty/netty-buffer@4.1.86.Final, cpe:2.3:a:netty:netty:4.1.86:*:*:*:*:*:*:*)
+    </notes>
+    <cve>CVE-2023-34462</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      spring-boot-2.4.3.jar (pkg:maven/org.springframework.boot/spring-boot@2.4.3, cpe:2.3:a:vmware:spring_boot:2.4.3:*:*:*:*:*:*:*)
+    </notes>
+    <cve>CVE-2023-20883</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      tomcat-embed-core-9.0.73.jar (pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.73
+    </notes>
+    <cve>CVE-2023-28709</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      jackson-databind thru 2.15.2 allows attackers to cause a denial of service or other unspecified impacts via crafted object that uses cyclic dependencies
+    </notes>
+    <cve>CVE-2023-35116</cve>
+  </suppress>
+
+  <!--  CVE major issue fix end-->
 </suppressions>
