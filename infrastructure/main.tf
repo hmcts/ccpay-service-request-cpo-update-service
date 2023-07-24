@@ -36,7 +36,7 @@ module "service_request_cpo_update_subscription" {
   namespace_name        = data.azurerm_servicebus_namespace.ccpay_servicebus_namespace.name
   resource_group_name   = data.azurerm_resource_group.rg.name
   topic_name            = module.service_request_cpo_update_topic.name
-  depends_on = [module.service_request_cpo_update_topic]
+  depends_on            = [module.service_request_cpo_update_topic]
 }
 
 resource "azurerm_key_vault_secret" "ccpay_service_request_cpo_update_topic_shared_access_key" {
