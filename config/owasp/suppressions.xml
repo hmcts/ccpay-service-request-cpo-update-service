@@ -113,5 +113,12 @@
     </notes>
     <cve>CVE-2021-31684</cve>
   </suppress>
+
+  <suppress>
+    <notes>
+      GzipSource does not handle an exception that might be raised when parsing a malformed gzip buffer.
+    </notes>
+    <cve>CVE-2023-3635</cve>
+  </suppress>
   <!--  CVE major issue fix end-->
 </suppressions>
