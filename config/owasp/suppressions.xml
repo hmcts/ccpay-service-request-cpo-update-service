@@ -106,5 +106,12 @@
     <cve>CVE-2023-35116</cve>
   </suppress>
 
+
+  <suppress>
+    <notes>
+      This vulnerability has been modified since it was last analyzed by the NVD
+    </notes>
+    <cve>CVE-2021-31684</cve>
+  </suppress>
   <!--  CVE major issue fix end-->
 </suppressions>
