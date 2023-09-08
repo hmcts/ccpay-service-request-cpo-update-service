@@ -179,10 +179,8 @@ repositories {
   maven { url 'https://jitpack.io' }
 }
 
-ext {
-  reformLoggingVersion = "6.0.1"
-}
-
+def reformLoggingVersion = '6.0.1'
+def springCloudVersion = '2021.0.3'
 
 def versions = [
   restAssured : '4.2.0',
@@ -190,10 +188,18 @@ def versions = [
   serenityCucumber        : '1.9.51'
 ]
 
+dependencyManagement {
+  imports {
+    mavenBom "org.springframework.boot:spring-boot-dependencies:2.7.13"
+    mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    mavenBom 'org.apache.logging.log4j:log4j-bom:2.17.0'
+  }
+
 dependencies {
 
   compileOnly 'com.sun.xml.bind:jaxb-osgi:2.3.1'
   implementation 'junit:junit:4.13.2'
+  implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign'
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop'
