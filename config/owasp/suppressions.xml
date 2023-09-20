@@ -106,5 +106,35 @@
     <cve>CVE-2023-35116</cve>
   </suppress>
 
+
+  <suppress>
+    <notes>
+      This vulnerability has been modified since it was last analyzed by the NVD
+    </notes>
+    <cve>CVE-2021-31684</cve>
+  </suppress>
+
+  <suppress>
+    <notes>
+      GzipSource does not handle an exception that might be raised when parsing a malformed gzip buffer.
+    </notes>
+    <cve>CVE-2023-3635</cve>
+  </suppress>
+
+  <suppress>
+    <notes>
+      URL Redirection to Untrusted Site ('Open Redirect') vulnerability in FORM authentication feature Apache Tomcat
+    </notes>
+    <cve>CVE-2023-41080</cve>
+  </suppress>
+
+  <suppress>
+    <notes>
+      When using the RemoteIpFilter with requests received from a reverse proxy via HTTP that include the X-Forwarded-Proto header set to https
+    </notes>
+    <cve>CVE-2023-28708</cve>
+  </suppress>
+
+
   <!--  CVE major issue fix end-->
 </suppressions>
