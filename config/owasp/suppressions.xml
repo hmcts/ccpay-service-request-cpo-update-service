@@ -136,5 +136,77 @@
   </suppress>
 
 
+  <suppress>
+    <notes>
+      Denial of Service in JSON-Java versions up to and including 20230618.
+    </notes>
+    <cve>CVE-2023-5072</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      The HTTP/2 protocol allows a denial of service
+    </notes>
+    <cve>CVE-2023-44487</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      A vulnerability was found in the Hot Rod client.
+    </notes>
+    <cve>CVE-2023-4586</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      Incomplete Cleanup vulnerability in Apache Tomcat.
+    </notes>
+    <cve>CVE-2023-42794</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      Improper Input Validation vulnerability in Apache Tomcat.Tomcat from 11.0.0-M1 through 11.0.0-M11
+    </notes>
+    <cve>CVE-2023-45648</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      Incomplete Cleanup vulnerability in Apache Tomcat.When recycling various internal objects in Apache Tomcat from 11.0.0-M1 through 11.0.0-M11
+    </notes>
+    <cve>CVE-2023-42795</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      Denial of Service in JSON-Java versions up to and including 20230618.
+    </notes>
+    <cve>CVE-2023-5072</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      The HTTP/2 protocol allows a denial of service
+    </notes>
+    <cve>CVE-2023-44487</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      A vulnerability was found in the Hot Rod client.
+    </notes>
+    <cve>CVE-2023-4586</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      Incomplete Cleanup vulnerability in Apache Tomcat.
+    </notes>
+    <cve>CVE-2023-42794</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      Improper Input Validation vulnerability in Apache Tomcat.Tomcat from 11.0.0-M1 through 11.0.0-M11
+    </notes>
+    <cve>CVE-2023-45648</cve>
+  </suppress>
+  <suppress>
+    <notes>
+      Incomplete Cleanup vulnerability in Apache Tomcat.When recycling various internal objects in Apache Tomcat from 11.0.0-M1 through 11.0.0-M11
+    </notes>
+    <cve>CVE-2023-42795</cve>
+  </suppress>
   <!--  CVE major issue fix end-->
 </suppressions>
