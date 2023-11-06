@@ -209,4 +209,24 @@
     <cve>CVE-2023-42795</cve>
   </suppress>
   <!--  CVE major issue fix end-->
+  <suppress  until="2023-12-31">
+    <notes>
+      A stack overflow in the XML.toJSONObject component of hutool-json v5.8.10 allows attackers to cause a Denial of Service
+    </notes>
+    <cve>CVE-2022-45688</cve>
+  </suppress>
+  <suppress  until="2023-12-31">
+    <notes>
+      SnakeYaml's Constructor() class does not restrict types which can be instantiated during deserialization
+    </notes>
+    <cve>CVE-2022-1471</cve>
+  </suppress>
+  <suppress  until="2023-12-31">
+    <notes>
+      Azure Active Directory Information Disclosure Vulnerability
+    </notes>
+    <cve>CVE-2021-42306</cve>
+  </suppress>
+
+
 </suppressions>
