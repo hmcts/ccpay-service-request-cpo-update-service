@@ -158,6 +158,7 @@
     <cve>CVE-2023-42794</cve>
     <cve>CVE-2023-42795</cve>
     <cve>CVE-2023-45648</cve>
+    <cve>CVE-2023-33202</cve>
   </suppress>
 
   <!--  CVE major issue fix end-->
