@@ -142,30 +142,5 @@
     <cve>CVE-2023-36052</cve>
   </suppress>
 
-  <suppress>
-    <notes>
-    </notes>
-    <cve>CVE-2023-</cve>
-  </suppress>
-
-  <suppress>
-    <notes>
-    </notes>
-    <cve>CVE-2023-</cve>
-  </suppress>
-
-  <suppress>
-    <notes>
-    </notes>
-    <cve>CVE-2023-</cve>
-  </suppress>
-
-  <suppress>
-    <notes>
-    </notes>
-    <cve>CVE-2023-</cve>
-  </suppress>
-
-
   <!--  CVE major issue fix end-->
 </suppressions>
