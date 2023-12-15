@@ -222,7 +222,7 @@ dependencies {
 
     implementation group: 'com.azure', name: 'azure-core', version: '1.21.0'
     implementation group: 'com.azure', name: 'azure-messaging-servicebus', version: '7.4.2'
-    implementation group: 'com.microsoft.azure', name: 'azure-servicebus', version: '3.6.5'
+    implementation group: 'com.microsoft.azure', name: 'azure-servicebus', version: '3.6.7'
 
     implementation group: 'uk.gov.hmcts.reform.auth', name: 'auth-checker-lib', version: '2.1.4'
     implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
