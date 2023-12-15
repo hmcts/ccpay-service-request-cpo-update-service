@@ -149,5 +149,16 @@
     <cve>CVE-2023-34055</cve>
   </suppress>
 
+  <suppress>
+    <notes>
+      HTTP/2 protocol, tomcat
+    </notes>
+    <cve>CVE-2023-44487</cve>
+    <cve>CVE-2023-46589</cve>
+    <cve>CVE-2023-42794</cve>
+    <cve>CVE-2023-42795</cve>
+    <cve>CVE-2023-45648</cve>
+  </suppress>
+
   <!--  CVE major issue fix end-->
 </suppressions>
