@@ -135,6 +135,26 @@
     <cve>CVE-2023-28708</cve>
   </suppress>
 
+  <suppress>
+    <notes>
+      Already on the latest azure packages.
+    </notes>
+    <cve>CVE-2023-36052</cve>
+    <cve>CVE-2021-42306</cve>
+  </suppress>
+
+  <suppress>
+    <notes>
+      Spring Boot, HTTP/2 protocol, tomcat. See ticket PAY-6764
+    </notes>
+    <cve>CVE-2023-34055</cve>
+    <cve>CVE-2023-44487</cve>
+    <cve>CVE-2023-46589</cve>
+    <cve>CVE-2023-42794</cve>
+    <cve>CVE-2023-42795</cve>
+    <cve>CVE-2023-45648</cve>
+    <cve>CVE-2023-33202</cve>
+  </suppress>
 
   <!--  CVE major issue fix end-->
 </suppressions>
