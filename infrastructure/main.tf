@@ -20,7 +20,7 @@ data "azurerm_key_vault" "ccpay_key_vault" {
 }
 
 data "azurerm_servicebus_namespace" "ccpay_premium_servicebus_namespace" {
-  name                = join("-", [var.product, "servicebus", var.env], "premium")
+  name                = join("-", [var.product, "servicebus", var.env, "premium"])
   resource_group_name = join("-", [var.product, var.env])
 }
 
