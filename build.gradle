@@ -194,7 +194,14 @@ dependencyManagement {
     mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     mavenBom 'org.apache.logging.log4j:log4j-bom:2.17.0'
   }
+  dependencies {
+    // CVE-2021-27568, CVE-2023-1370
+    dependencySet(group: 'net.minidev', version: '2.5.1') {
+      entry 'json-smart'
+    }
+  }
 }
+
 dependencies {
 
     compileOnly 'com.sun.xml.bind:jaxb-osgi:2.3.1'
@@ -228,10 +235,9 @@ dependencies {
     implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
     implementation group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: '4.0.0'
 
+    implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.37.3'
 
     testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '3.3.0'
-
-
     testImplementation(platform('org.junit:junit-bom:5.8.2'))
     testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', {
       exclude group: 'junit', module: 'junit'
