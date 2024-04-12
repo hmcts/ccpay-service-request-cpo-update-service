@@ -10,7 +10,7 @@ java:
       secrets:
         - name: AppInsightsInstrumentationKey
           alias: azure.application-insights.instrumentation-key
-        - name: ccpay-service-request-cpo-update-topic-shared-access-key
+        - name: ccpay-service-request-cpo-update-topic-premium-shared-access-key
           alias: AMQP_SHARED_ACCESS_KEY_VALUE
         - name: ccpay-cpo-client-id
           alias: CPO_UPDATE_SERVICE_ACCOUNT_CLIENT_ID
