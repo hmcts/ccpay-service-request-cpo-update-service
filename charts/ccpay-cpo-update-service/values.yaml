@@ -22,10 +22,10 @@ java:
           alias: OIDC_S2S_SECRET
   environment:
     IDAM_API_URL: "https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net"
-    AMQP_HOST: "ccpay-servicebus-{{ .Values.global.environment }}.servicebus.windows.net"
+    AMQP_HOST: "ccpay-servicebus-{{ .Values.global.environment }}-premium.servicebus.windows.net"
     AMQP_SHARED_ACCESS_KEY_NAME: SendAndListenSharedAccessKey
     AMQP_TOPIC_NAME: "ccpay-service-request-cpo-update-topic"
-    AMQP_SUBSCRIPTION: serviceRequestCpoUpdateSubscription
+    AMQP_SUBSCRIPTION: serviceRequestCpoUpdatePremiumSubscription
     CPO_UPDATE_ACCOUNT_GRANT_TYPE: password
     CPO_UPDATE_ACCOUNT_SCOPE: openid profile roles
     CPO_UPDATE_ACCOUNT_USERNAME: idam.user.ccpayfunctionnode@hmcts.net
