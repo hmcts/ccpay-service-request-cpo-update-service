@@ -199,11 +199,23 @@ dependencyManagement {
     dependencySet(group: 'net.minidev', version: '2.5.1') {
       entry 'json-smart'
     }
+    // CVE-2023-28709, CVE-2023-42794, CVE-2023-46589
+    dependencySet(group: 'org.apache.tomcat.embed', version: '10.1.23') {
+      entry 'tomcat-embed-core'
+      entry 'tomcat-embed-el'
+      entry 'tomcat-embed-websocket'
+    }
+    // CVE-2023-35116
+    dependency group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.17.0'
+    dependency group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.17.0'
+    dependency group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.17.0'
+
+    // CVE-2023-3635
+    dependency group: 'com.squareup.okio', name: 'okio', version: '3.4.0'
   }
 }
 
 dependencies {
-
     compileOnly 'com.sun.xml.bind:jaxb-osgi:2.3.1'
     implementation 'junit:junit:4.13.2'
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign'
@@ -227,8 +239,8 @@ dependencies {
     implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.17.1'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: '2.17.1'
 
-    implementation group: 'com.azure', name: 'azure-core', version: '1.21.0'
-    implementation group: 'com.azure', name: 'azure-messaging-servicebus', version: '7.4.2'
+    implementation group: 'com.azure', name: 'azure-core', version: '1.48.0'
+    implementation group: 'com.azure', name: 'azure-messaging-servicebus', version: '7.16.0'
     implementation group: 'com.microsoft.azure', name: 'azure-servicebus', version: '3.6.7'
 
     implementation group: 'uk.gov.hmcts.reform.auth', name: 'auth-checker-lib', version: '2.1.4'
