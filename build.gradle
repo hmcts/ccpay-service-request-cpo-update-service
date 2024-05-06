@@ -202,12 +202,6 @@ dependencyManagement {
     dependencySet(group: 'net.minidev', version: '2.5.1') {
       entry 'json-smart'
     }
-    // CVE-2023-28709, CVE-2023-42794, CVE-2023-46589
-    dependencySet(group: 'org.apache.tomcat.embed', version: '10.1.23') {
-      entry 'tomcat-embed-core'
-      entry 'tomcat-embed-el'
-      entry 'tomcat-embed-websocket'
-    }
     // CVE-2023-35116
     dependency group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.17.0'
     dependency group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.17.0'
