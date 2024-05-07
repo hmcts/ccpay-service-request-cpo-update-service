@@ -188,7 +188,7 @@ def versions = [
   serenityCucumber        : '1.9.51'
 ]
 
-ext['tomcat.version'] = '10.1.23' // CVE-2021-42340, CVE-2022-23181, CVE-2022-29885, CVE-2022-34305
+ext['tomcat.version'] = '9.0.88' // CVE-2021-42340, CVE-2022-23181, CVE-2022-29885, CVE-2022-34305
 ext['netty.version'] = '4.1.100.Final' // CVE-2022-25647
 
 dependencyManagement {
