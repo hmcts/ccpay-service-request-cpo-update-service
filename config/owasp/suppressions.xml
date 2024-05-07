@@ -93,32 +93,12 @@
     </notes>
     <cve>CVE-2023-20883</cve>
   </suppress>
-  <suppress>
-    <notes>
-      tomcat-embed-core-9.0.73.jar (pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@9.0.73
-    </notes>
-    <cve>CVE-2023-28709</cve>
-  </suppress>
-  <suppress>
-    <notes>
-      jackson-databind thru 2.15.2 allows attackers to cause a denial of service or other unspecified impacts via crafted object that uses cyclic dependencies
-    </notes>
-    <cve>CVE-2023-35116</cve>
-  </suppress>
-
 
   <suppress>
     <notes>
       This vulnerability has been modified since it was last analyzed by the NVD
     </notes>
     <cve>CVE-2021-31684</cve>
-  </suppress>
-
-  <suppress>
-    <notes>
-      GzipSource does not handle an exception that might be raised when parsing a malformed gzip buffer.
-    </notes>
-    <cve>CVE-2023-3635</cve>
   </suppress>
 
   <suppress>
@@ -148,9 +128,6 @@
       Spring Boot, HTTP/2 protocol, tomcat. See ticket PAY-6764
     </notes>
     <cve>CVE-2023-34055</cve>
-    <cve>CVE-2023-44487</cve>
-    <cve>CVE-2023-46589</cve>
-    <cve>CVE-2023-42794</cve>
     <cve>CVE-2023-42795</cve>
     <cve>CVE-2023-45648</cve>
     <cve>CVE-2023-33202</cve>
