@@ -58,11 +58,6 @@
     <cve>CVE-2023-20861</cve>
   </suppress>
   <suppress>
-    <notes>In spring framework versions prior to 5.2.24 release+ ,5.3.27+ and 6.0.8+ , it is possible for a user to provide a specially crafted SpEL expression that may cause a denial-of-service (DoS) condition.
-    </notes>
-    <cve>CVE-2023-20863</cve>
-  </suppress>
-  <suppress>
     <notes>
       jackson-databind 2.10.x through 2.12.x before 2.12.6 and 2.13.x before 2.13.1 allows attackers to cause a denial of service (2 GB transient heap usage per read) in uncommon situations involving JsonNode JDK serialization.
     </notes>
@@ -120,17 +115,6 @@
       Already on the latest azure packages.
     </notes>
     <cve>CVE-2023-36052</cve>
-    <cve>CVE-2021-42306</cve>
-  </suppress>
-
-  <suppress>
-    <notes>
-      Spring Boot, HTTP/2 protocol, tomcat. See ticket PAY-6764
-    </notes>
-    <cve>CVE-2023-34055</cve>
-    <cve>CVE-2023-42795</cve>
-    <cve>CVE-2023-45648</cve>
-    <cve>CVE-2023-33202</cve>
   </suppress>
 
   <!--  CVE major issue fix end-->

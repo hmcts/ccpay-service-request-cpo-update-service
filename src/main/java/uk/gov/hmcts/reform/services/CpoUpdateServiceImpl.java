@@ -66,7 +66,7 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
             throw new CpoUpdateException("CPO",exception.getStatusCode(),exception);
         } catch (ResourceAccessException exception) {
             LOG.info("CPO call exception {}",exception.getMessage());
-            throw new CpoUpdateException("CPO", HttpStatus.SERVICE_UNAVAILABLE,exception);
+            throw new CpoUpdateException("CPO", HttpStatus.SERVICE_UNAVAILABLE, exception);
         }
     }
 
