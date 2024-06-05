@@ -180,7 +180,7 @@ repositories {
 }
 
 def reformLoggingVersion = '6.0.1'
-def springCloudVersion = '2021.0.3'
+def springCloudVersion = '2021.0.9'
 
 def versions = [
   restAssured : '4.2.0',
@@ -193,7 +193,7 @@ ext['netty.version'] = '4.1.100.Final' // CVE-2022-25647
 
 dependencyManagement {
   imports {
-    mavenBom "org.springframework.boot:spring-boot-dependencies:2.7.13"
+    mavenBom "org.springframework.boot:spring-boot-dependencies:2.7.18"
     mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     mavenBom 'org.apache.logging.log4j:log4j-bom:2.17.0'
   }
@@ -238,7 +238,9 @@ dependencies {
 
     implementation group: 'com.azure', name: 'azure-core', version: '1.49.0'
     implementation group: 'com.azure', name: 'azure-messaging-servicebus', version: '7.17.0'
-    implementation group: 'com.microsoft.azure', name: 'azure-servicebus', version: '3.6.7'
+    implementation (group: 'com.microsoft.azure', name: 'azure-servicebus', version: '3.6.7') {
+      exclude module: 'adal4j'
+    }
 
     implementation group: 'uk.gov.hmcts.reform.auth', name: 'auth-checker-lib', version: '2.1.4'
     implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
