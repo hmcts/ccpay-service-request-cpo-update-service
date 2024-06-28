@@ -224,8 +224,8 @@ dependencies {
     implementation group: 'org.springframework', name: 'spring-aspects'
     implementation group: 'org.hibernate', name: 'hibernate-validator', version: '7.0.1.Final'
 
-    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
-    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.34'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.34'
 
     implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
     implementation group: 'org.springdoc', name: 'springdoc-openapi-webmvc-core', version: '1.7.0'
@@ -259,8 +259,8 @@ dependencies {
     integrationTestImplementation sourceSets.main.runtimeClasspath
     integrationTestImplementation sourceSets.test.runtimeClasspath
 
-    functionalTestAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
-    functionalTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
+    functionalTestAnnotationProcessor 'org.projectlombok:lombok:1.18.34'
+    functionalTestAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.34'
     functionalTestImplementation group: 'net.serenity-bdd', name: 'serenity-core', version: versions.serenity
     functionalTestImplementation group: 'net.serenity-bdd', name: 'serenity-cucumber', version: versions.serenityCucumber
     functionalTestImplementation group: 'net.serenity-bdd', name: 'serenity-junit', version: versions.serenity
