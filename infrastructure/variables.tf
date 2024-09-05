@@ -4,7 +4,7 @@ variable "product" {
 }
 
 variable "component" {
-  type    = string
+  type = string
 }
 
 variable "location" {
@@ -17,12 +17,12 @@ variable "env" {
 }
 
 variable "subscription" {
-type = string
+  type = string
 }
 
 variable "deployment_namespace" {
-  type = string
-  default = ""
+  type        = string
+  default     = ""
   description = "Deployment Namespace. Optional (only used in PRs)"
 }
 
