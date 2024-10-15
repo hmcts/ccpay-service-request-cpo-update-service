@@ -75,13 +75,13 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
     public void recover(CpoUpdateException exception, CpoUpdateServiceRequest cpoUpdateServiceRequest) {
         LOG.info("issue in connecting {}",exception.getServer());
         LOG.info("Recovery send to dl queue");
-        throw new MaxTryExceededException(exception.getServer(),exception.getStatus(),exception);
+        throw new MaxTryExceededException(exception.getServer(), exception.getStatus(), exception);
 
     }
 
     private MultiValueMap<String,String> getHttpHeaders() {
         MultiValueMap<String, String> inputHeaders = new LinkedMultiValueMap<>();
-        inputHeaders.put("Content-Type",Arrays.asList("application/json"));
+        inputHeaders.put("Content-Type", Arrays.asList("application/json"));
         inputHeaders.put("Authorization", Arrays.asList("Bearer " + getAccessToken()));
         inputHeaders.put("ServiceAuthorization", Arrays.asList(getServiceAuthorisationToken()));
         LOG.info("HttpHeader {}", inputHeaders);
@@ -94,7 +94,7 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
             LOG.info("authTokenGenerator.generate() {}",serviceAuthToken);
             return serviceAuthToken;
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            throw new CpoUpdateException("S2S",e.getStatusCode(),e);
+            throw new CpoUpdateException("S2S", e.getStatusCode(), e);
         } catch (Exception e) {
             throw new CpoUpdateException("S2S",HttpStatus.SERVICE_UNAVAILABLE,e);
         }
