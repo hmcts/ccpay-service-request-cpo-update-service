@@ -73,7 +73,7 @@ git mv src/main/java/uk/gov/hmcts/reform/demo/ src/main/java/uk/gov/hmcts/reform
 # Rename CNP file
 git mv Jenkinsfile_template Jenkinsfile_CNP
 
-declare -a headers_to_delete=("Purpose" "What's inside" "Plugins" "Setup" "Hystrix")
+declare -a headers_to_delete=("Purpose" "What's inside" "Plugins" "Setup")
 
 # Clean-up README file
 for i in "${headers_to_delete[@]}"
