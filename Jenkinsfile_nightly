@@ -11,4 +11,14 @@ def type = "java"
 def product = "ccpay"
 def component = "cpo-update-service"
 
-withNightlyPipeline(type, product, component) {}
+
+withNightlyPipeline(type, product, component) {
+
+  enableFortifyScan('ccpay-aat')
+  disableLegacyDeployment()
+  nonServiceApp()
+
+  afterAlways('fortify-scan') {
+    steps.archiveArtifacts allowEmptyArchive: true, artifacts: '**/Fortify Scan/**/*'
+  }
+}

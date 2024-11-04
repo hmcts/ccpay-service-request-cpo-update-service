@@ -231,6 +231,7 @@ dependencies {
       exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation('org.apiguardian:apiguardian-api:1.1.2')
+    testImplementation 'com.github.hmcts:fortify-client:1.4.1:all'
 
     integrationTestImplementation sourceSets.main.runtimeClasspath
     integrationTestImplementation sourceSets.test.runtimeClasspath
@@ -256,6 +257,11 @@ application {
   mainClass = 'uk.gov.hmcts.reform.CpoUpdateApplication'
 }
 
+task fortifyScan(type: JavaExec)  {
+  main = "uk.gov.hmcts.fortifyclient.FortifyClientMainApp"
+  classpath += sourceSets.test.runtimeClasspath
+  jvmArgs = ['--add-opens=java.base/java.lang.reflect=ALL-UNNAMED']
+}
 
 bootJar {
   archiveFileName = "cpo-update-service.jar"
