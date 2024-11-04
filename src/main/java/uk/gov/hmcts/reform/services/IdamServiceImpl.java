@@ -55,9 +55,7 @@ public class IdamServiceImpl implements IdamService {
 
     @Override
     public IdamTokenResponse getSecurityTokens() {
-        LOG.info("getSecurityTokens");
-        LOG.info("clientId {}",clientId);
-        LOG.info("clientSecret {}",clientSecret);
+
         if (null != idamBaseUrl) {
             idamBaseUrl = idamBaseUrl.replace(".prod", "");
         }
