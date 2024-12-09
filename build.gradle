@@ -176,7 +176,7 @@ repositories {
 }
 
 def reformLoggingVersion = '6.0.1'
-def springCloudVersion = '2023.0.3'
+def springCloudVersion = '2024.0.0'
 
 def versions = [
   lombok          : '1.18.34',
