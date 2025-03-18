@@ -25,14 +25,14 @@ data "azurerm_servicebus_namespace" "ccpay_premium_servicebus_namespace" {
 }
 
 module "service_request_cpo_update_topic_premium" {
-  source                = "git@github.com:hmcts/terraform-module-servicebus-topic?ref=4.x"
+  source                = "git@github.com:hmcts/terraform-module-servicebus-topic"
   name                  = "ccpay-service-request-cpo-update-topic"
-  namespace_name        = data.azurerm_servicebus_namespace.ccpay_premium_servicebus_namespace.name
+  namespace_id          = data.azurerm_servicebus_namespace.ccpay_premium_servicebus_namespace.id
   resource_group_name   = data.azurerm_resource_group.rg.name
 }
 
 module "service_request_cpo_update_subscription_premium" {
-  source                = "git@github.com:hmcts/terraform-module-servicebus-subscription?ref=4.x"
+  source                = "git@github.com:hmcts/terraform-module-servicebus-subscription"
   name                  = local.premium_subscription_name
   namespace_id          = data.azurerm_servicebus_namespace.ccpay_premium_servicebus_namespace.id
   topic_name            = module.service_request_cpo_update_topic_premium.name
