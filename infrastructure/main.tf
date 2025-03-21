@@ -38,7 +38,6 @@ module "service_request_cpo_update_subscription_premium" {
   namespace_name        = data.azurerm_servicebus_namespace.ccpay_premium_servicebus_namespace.name
   namespace_id          = data.azurerm_servicebus_namespace.ccpay_premium_servicebus_namespace.id
   topic_name            = module.service_request_cpo_update_topic_premium.name
-  resource_group_name   = data.azurerm_resource_group.rg.name
   depends_on            = [module.service_request_cpo_update_topic_premium]
 }
 
