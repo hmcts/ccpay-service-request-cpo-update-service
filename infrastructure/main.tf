@@ -1,6 +1,5 @@
 provider "azurerm" {
   features {}
-  api_version = "2024-11-01"  # Use a supported API version
 }
 
 locals {
