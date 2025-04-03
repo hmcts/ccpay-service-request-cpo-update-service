@@ -179,7 +179,7 @@ def reformLoggingVersion = '6.0.1'
 def springCloudVersion = '2023.0.3'
 
 def versions = [
-  lombok          : '1.18.34',
+  lombok          : '1.18.38',
   restAssured     : '5.5.0',
   serenity        : '4.2.3',
   serenityCucumber: '4.2.3'
