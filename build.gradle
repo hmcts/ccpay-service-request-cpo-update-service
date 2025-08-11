@@ -220,7 +220,7 @@ dependencies {
     implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '6.6'
     implementation group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '6.1.0'
 
-    implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.41.2'
+    implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '10.4.1'
 
     compileOnly group: 'org.projectlombok', name: 'lombok', version: versions.lombok
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
