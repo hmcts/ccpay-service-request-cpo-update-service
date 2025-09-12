@@ -16,9 +16,6 @@ spring:
     name: ServiceRequestCpoUpdateService
   main:
     allow-bean-definition-overriding: true
-azure:
-  application-insights:
-    instrumentation-key: ${rpe.AppInsightsInstrumentationKey:00000000-0000-0000-0000-000000000000}
 
 
 amqp:

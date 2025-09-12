@@ -17,11 +17,6 @@ spring:
   application:
     name: ServiceRequestCpoUpdateService
 
-azure:
-  application-insights:
-    instrumentation-key: ${rpe.AppInsightsInstrumentationKey:00000000-0000-0000-0000-000000000000}
-
-
 amqp:
   host: ${AMQP_HOST}
   sharedAccessKeyName: ${AMQP_SHARED_ACCESS_KEY_NAME}
