@@ -53,11 +53,14 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
     @Override
     @Retryable(value = CpoUpdateException.class,backoff = @Backoff(delay = DELAY_COUNT))
     public void updateCpoServiceWithPayment(CpoUpdateServiceRequest cpoUpdateServiceRequest) {
+        LOG.debug("updateCpoServiceWithPayment");
         UriComponentsBuilder builder = UriComponentsBuilder.newInstance()
                                             .fromUriString(cpoBaseUrl + cpoPath);
+        LOG.debug("CPO URL {}", builder.toUriString());
         try {
             restTemplateCpo.exchange(builder.toUriString(), HttpMethod.POST,
                                      new HttpEntity<>(cpoUpdateServiceRequest, getHttpHeaders()), String.class);
+            LOG.debug("CPO call completed successfully");
         } catch (HttpClientErrorException | HttpServerErrorException exception) {
             LOG.info("CPO call exception {}",exception.getMessage());
             throw new CpoUpdateException("CPO",exception.getStatusCode(),exception);
@@ -81,12 +84,14 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
         inputHeaders.put("Content-Type", Arrays.asList("application/json"));
         inputHeaders.put("Authorization", Arrays.asList("Bearer " + getAccessToken()));
         inputHeaders.put("ServiceAuthorization", Arrays.asList(getServiceAuthorisationToken()));
+        LOG.debug("HttpHeader {}", inputHeaders);
         return inputHeaders;
     }
 
     private String getServiceAuthorisationToken() {
         try {
             String serviceAuthToken = authTokenGenerator.generate();
+            LOG.debug("authTokenGenerator.generate() {}", serviceAuthToken);
             return serviceAuthToken;
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             throw new CpoUpdateException("S2S", e.getStatusCode(), e);
@@ -97,6 +102,7 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
 
     private String getAccessToken() {
         IdamTokenResponse idamTokenResponse = idamService.getSecurityTokens();
+        LOG.debug("idamTokenResponse {}", idamTokenResponse.getAccessToken());
         return idamTokenResponse.getAccessToken();
     }
 }

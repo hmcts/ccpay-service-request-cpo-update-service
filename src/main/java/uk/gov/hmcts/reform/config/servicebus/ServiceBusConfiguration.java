@@ -57,6 +57,11 @@ public class ServiceBusConfiguration {
     @Bean
     public SubscriptionClient receiveClient() throws URISyntaxException, ServiceBusException,
         InterruptedException {
+        log.debug("host {}", host);
+        log.debug("sharedAccessKeyName {}", sharedAccessKeyName);
+        log.debug("topic {}", topic);
+        log.debug("sharedAccessKeyValue {}", sharedAccessKeyValue);
+        log.debug("subscription {}", subscription);
         URI endpoint = new URI("sb://" + host);
 
         String destination = topic.concat("/subscriptions/").concat(subscription);
@@ -79,6 +84,7 @@ public class ServiceBusConfiguration {
             @SneakyThrows
             @Override
             public CompletableFuture<Void> onMessageAsync(IMessage message) {
+                log.debug("RECEIVED");
                 List<byte[]> body = message.getMessageBody().getBinaryData();
                 AtomicBoolean result = new AtomicBoolean();
                 try {
