@@ -182,7 +182,7 @@ def versions = [
   lombok          : '1.18.34',
   restAssured     : '5.5.0',
   serenity        : '4.2.3',
-  serenityCucumber: '4.2.3'
+  serenityCucumber: '4.3.4'
 ]
 
 dependencyManagement {
