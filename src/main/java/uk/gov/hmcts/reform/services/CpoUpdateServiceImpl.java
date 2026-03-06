@@ -84,14 +84,14 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
         inputHeaders.put("Content-Type", Arrays.asList("application/json"));
         inputHeaders.put("Authorization", Arrays.asList("Bearer " + getAccessToken()));
         inputHeaders.put("ServiceAuthorization", Arrays.asList(getServiceAuthorisationToken()));
-        LOG.info("HttpHeader {}", inputHeaders);
+        LOG.info("HttpHeader Map generated");
         return inputHeaders;
     }
 
     private String getServiceAuthorisationToken() {
         try {
             String serviceAuthToken = authTokenGenerator.generate();
-            LOG.info("authTokenGenerator.generate() {}",serviceAuthToken);
+            LOG.info("authToken generated");
             return serviceAuthToken;
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             throw new CpoUpdateException("S2S", e.getStatusCode(), e);
@@ -102,7 +102,6 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
 
     private String getAccessToken() {
         IdamTokenResponse idamTokenResponse = idamService.getSecurityTokens();
-        LOG.info("idamTokenResponse {}",idamTokenResponse.getAccessToken());
         return idamTokenResponse.getAccessToken();
     }
 }
