@@ -9,6 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -32,6 +33,7 @@ class IdamServiceTest {
 
     @Test
     void methodGetAccessTokenShouldMakeCallToIdamApi() {
+        ReflectionTestUtils.setField(idamService, "idamBaseUrl", "https://idam-api.prod.platform.hmcts.net");
         IdamTokenResponse idamTokenResponse = IdamTokenResponse.idamFullNameRetrivalResponseWith()
                                                     .refreshToken("refresh-token")
                                                     .idToken("id-token")
@@ -40,10 +42,13 @@ class IdamServiceTest {
                                                     .scope("openid profile roles")
                                                     .tokenType("type")
                                                     .build();
-        Mockito.when(restTemplateIdam.exchange(anyString(), eq(HttpMethod.POST), Mockito.any(), eq(
+        Mockito.when(restTemplateIdam.exchange(eq("https://idam-api.platform.hmcts.net/o/token"),
+            eq(HttpMethod.POST), Mockito.any(), eq(
             IdamTokenResponse.class))).thenReturn(ResponseEntity.ok(idamTokenResponse));
         IdamTokenResponse actualResponse = idamService.getSecurityTokens();
         assertThat(idamTokenResponse).usingRecursiveComparison().isEqualTo(actualResponse);
+        Mockito.verify(restTemplateIdam).exchange(eq("https://idam-api.platform.hmcts.net/o/token"),
+            eq(HttpMethod.POST), Mockito.any(), eq(IdamTokenResponse.class));
     }
 
     @Test

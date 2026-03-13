@@ -11,14 +11,14 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.gov.hmcts.reform.dtos.responses.IdamTokenResponse;
 import uk.gov.hmcts.reform.exceptions.CpoUpdateException;
-
-import static org.springframework.http.HttpHeaders.EMPTY;
 
 @Service
 public class IdamServiceImpl implements IdamService {
@@ -60,22 +60,23 @@ public class IdamServiceImpl implements IdamService {
             idamBaseUrl = idamBaseUrl.replace(".prod", "");
         }
         UriComponentsBuilder builder = UriComponentsBuilder.newInstance()
-            .fromUriString(idamBaseUrl + TOKEN_ENDPOINT_PATH)
-            .queryParam("client_id",clientId)
-            .queryParam("client_secret",clientSecret)
-            .queryParam("grant_type",grantType)
-            .queryParam("password",password)
-            .queryParam("scope",scope)
-            .queryParam("username",username);
+            .fromUriString(idamBaseUrl + TOKEN_ENDPOINT_PATH);
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        MultiValueMap<String, String> formBody = new LinkedMultiValueMap<>();
+        formBody.add("client_id", clientId);
+        formBody.add("client_secret", clientSecret);
+        formBody.add("grant_type", grantType);
+        formBody.add("password", password);
+        formBody.add("scope", scope);
+        formBody.add("username", username);
 
         try {
             ResponseEntity<IdamTokenResponse> idamTokenResponse = restTemplateIdam
                 .exchange(
                     builder.build(false).toUriString(),
                     HttpMethod.POST,
-                    new HttpEntity<>(httpHeaders, EMPTY),
+                    new HttpEntity<>(formBody, httpHeaders),
                     IdamTokenResponse.class
                 );
             return idamTokenResponse.getBody();
