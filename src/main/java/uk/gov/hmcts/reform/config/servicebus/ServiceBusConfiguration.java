@@ -22,7 +22,6 @@ import uk.gov.hmcts.reform.services.ServiceBusMessageService;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Duration;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -85,10 +84,9 @@ public class ServiceBusConfiguration {
             @Override
             public CompletableFuture<Void> onMessageAsync(IMessage message) {
                 log.info("RECEIVED");
-                List<byte[]> body = message.getMessageBody().getBinaryData();
                 AtomicBoolean result = new AtomicBoolean();
                 try {
-                    serviceBusMessageService.processMessageFromTopic(body, result);
+                    serviceBusMessageService.processMessageFromTopic(message, result);
                     if (result.get()) {
                         return receiveClient.completeAsync(message.getLockToken());
                     }
@@ -96,6 +94,12 @@ public class ServiceBusConfiguration {
                     return receiveClient.deadLetterAsync(message.getLockToken(),e.getServer(),e.getStatus().toString());
                 } catch (InvalidCpoUpdateRequestException e) {
                     return receiveClient.deadLetterAsync(message.getLockToken(),e.getServer(),e.getStatus().toString());
+                } catch (SecurityException e) {
+                    return receiveClient.deadLetterAsync(message.getLockToken(), "SecurityException",
+                        e.getMessage());
+                } catch (IllegalArgumentException | IllegalStateException e) {
+                    return receiveClient.deadLetterAsync(message.getLockToken(), e.getClass().getSimpleName(),
+                        e.getMessage());
                 } catch (Exception e) {
                     log.info(e.getMessage());
                 }

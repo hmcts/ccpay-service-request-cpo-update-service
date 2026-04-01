@@ -1,9 +1,10 @@
 package uk.gov.hmcts.reform.services;
 
+import com.microsoft.azure.servicebus.IMessage;
+
 import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public interface ServiceBusMessageService {
-    void processMessageFromTopic(List<byte[]> body, AtomicBoolean result) throws IOException;
+    void processMessageFromTopic(IMessage message, AtomicBoolean result) throws IOException;
 }

@@ -45,6 +45,11 @@ cpo:
 
 thread:
   count: ${THREAD_COUNT:4}
+
+hmac:
+  secrets:
+    ccpay-message-signing-key: ${CCPAY_MESSAGE_SIGNING_KEY:}
+
 logging:
   level:
     org:
