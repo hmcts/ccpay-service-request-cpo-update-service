@@ -27,7 +27,7 @@ public class ServiceBusMessageServiceImpl implements ServiceBusMessageService {
     private static final String HEADER_SENDER = "X-Sender-Service";
     private static final String HEADER_TIMESTAMP = "X-Timestamp";
     private static final String EXPECTED_INBOUND_SENDER = "ccpay-payment";
-    private static final Duration MAX_MESSAGE_AGE = Duration.ofMinutes(5);
+    private static final Duration MAX_MESSAGE_AGE = Duration.ofMinutes(30);
 
     @Autowired
     private CpoUpdateService cpoUpdateService;
