@@ -191,7 +191,7 @@ class ServiceBusMessageServiceTest {
 
         configureSigningSecret(HMAC_SECRET);
         String body = objectMapper.writeValueAsString(request);
-        configureSecurityProperties(signedProperties(body, Instant.now().minusSeconds(6 * 60L).toString()));
+        configureSecurityProperties(signedProperties(body, Instant.now().minusSeconds(31 * 60L).toString()));
 
         SecurityException exception = assertThrows(
             SecurityException.class,
