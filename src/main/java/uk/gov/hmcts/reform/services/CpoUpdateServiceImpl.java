@@ -56,7 +56,7 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
         LOG.debug("updateCpoServiceWithPayment");
         UriComponentsBuilder builder = UriComponentsBuilder.newInstance()
                                             .fromUriString(cpoBaseUrl + cpoPath);
-        LOG.debug("CPO URL {}", builder.toUriString());
+        LOG.info("CPO URL {}", builder.toUriString());
         try {
             restTemplateCpo.exchange(builder.toUriString(), HttpMethod.POST,
                                      new HttpEntity<>(cpoUpdateServiceRequest, getHttpHeaders()), String.class);
@@ -84,14 +84,14 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
         inputHeaders.put("Content-Type", Arrays.asList("application/json"));
         inputHeaders.put("Authorization", Arrays.asList("Bearer " + getAccessToken()));
         inputHeaders.put("ServiceAuthorization", Arrays.asList(getServiceAuthorisationToken()));
-        LOG.debug("HttpHeader {}", inputHeaders);
+        LOG.info("HttpHeader Map generated");
         return inputHeaders;
     }
 
     private String getServiceAuthorisationToken() {
         try {
             String serviceAuthToken = authTokenGenerator.generate();
-            LOG.debug("authTokenGenerator.generate() {}", serviceAuthToken);
+            LOG.info("authToken generated");
             return serviceAuthToken;
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             throw new CpoUpdateException("S2S", e.getStatusCode(), e);
@@ -102,7 +102,6 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
 
     private String getAccessToken() {
         IdamTokenResponse idamTokenResponse = idamService.getSecurityTokens();
-        LOG.debug("idamTokenResponse {}", idamTokenResponse.getAccessToken());
         return idamTokenResponse.getAccessToken();
     }
 }
