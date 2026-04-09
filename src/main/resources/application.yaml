@@ -50,3 +50,11 @@ logging:
     org:
       springframework:
         web: DEBUG
+    com:
+      microsoft:
+        azure:
+          servicebus: WARN
+      fasterxml:
+        jackson:
+          databind:
+            PropertyNamingStrategies: ERROR
