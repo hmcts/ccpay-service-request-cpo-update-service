@@ -51,3 +51,7 @@ amqp:
 cpo:
   baseUrl: http://localhost:3200
   path: /case-payment-orders
+
+hmac:
+  secrets:
+    ccpay-message-signing-key: MDEyMzQ1Njc4OWFiY2RlZjAxMjM0NTY3ODlhYmNkZWY=
