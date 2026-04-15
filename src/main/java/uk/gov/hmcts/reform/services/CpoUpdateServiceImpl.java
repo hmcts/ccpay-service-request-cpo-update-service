@@ -53,14 +53,14 @@ public class CpoUpdateServiceImpl implements CpoUpdateService {
     @Override
     @Retryable(value = CpoUpdateException.class,backoff = @Backoff(delay = DELAY_COUNT))
     public void updateCpoServiceWithPayment(CpoUpdateServiceRequest cpoUpdateServiceRequest) {
-        LOG.info("updateCpoServiceWithPayment");
+        LOG.debug("updateCpoServiceWithPayment");
         UriComponentsBuilder builder = UriComponentsBuilder.newInstance()
                                             .fromUriString(cpoBaseUrl + cpoPath);
-        LOG.info("CPO URL {}",builder.toUriString());
+        LOG.info("CPO URL {}", builder.toUriString());
         try {
             restTemplateCpo.exchange(builder.toUriString(), HttpMethod.POST,
                                      new HttpEntity<>(cpoUpdateServiceRequest, getHttpHeaders()), String.class);
-            LOG.info("CPO call completed successfully");
+            LOG.debug("CPO call completed successfully");
         } catch (HttpClientErrorException | HttpServerErrorException exception) {
             LOG.info("CPO call exception {}",exception.getMessage());
             throw new CpoUpdateException("CPO",exception.getStatusCode(),exception);
