@@ -20,6 +20,8 @@ java:
           alias: CPO_UPDATE_ACCOUNT_PASSWORD
         - name: service-request-cpo-update-service-s2s-secret
           alias: OIDC_S2S_SECRET
+        - name: ccpay-message-signing-key
+          alias: CCPAY_MESSAGE_SIGNING_KEY
   environment:
     IDAM_API_URL: "https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net"
     AMQP_HOST: "ccpay-servicebus-{{ .Values.global.environment }}-premium.servicebus.windows.net"

@@ -13,8 +13,6 @@ import uk.gov.hmcts.reform.exceptions.InvalidCpoUpdateRequestException;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
-import java.time.Instant;
 import java.util.Base64;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -27,7 +25,6 @@ public class ServiceBusMessageServiceImpl implements ServiceBusMessageService {
     private static final String HEADER_SENDER = "X-Sender-Service";
     private static final String HEADER_TIMESTAMP = "X-Timestamp";
     private static final String EXPECTED_INBOUND_SENDER = "ccpay-payment";
-    private static final Duration MAX_MESSAGE_AGE = Duration.ofMinutes(30);
 
     @Autowired
     private CpoUpdateService cpoUpdateService;
@@ -69,16 +66,12 @@ public class ServiceBusMessageServiceImpl implements ServiceBusMessageService {
             throw new SecurityException("Unexpected sender: " + sender);
         }
 
-        if (isExpired(timestamp)) {
-            throw new SecurityException("Message expired");
-        }
-
         String payloadToSign = buildPayloadToSign(message, timestamp, sender);
         String expectedSignature = hmacSha256Base64(payloadToSign, ccpayMessageSigningKey);
 
         boolean matches = java.security.MessageDigest.isEqual(
-            Base64.getDecoder().decode(signature),
-            Base64.getDecoder().decode(expectedSignature)
+            signature.getBytes(StandardCharsets.UTF_8),
+            expectedSignature.getBytes(StandardCharsets.UTF_8)
         );
 
         if (!matches) {
@@ -95,13 +88,6 @@ public class ServiceBusMessageServiceImpl implements ServiceBusMessageService {
             asString(message.getContentType()),
             Base64.getEncoder().encodeToString(message.getBody())
         );
-    }
-
-    private boolean isExpired(String timestamp) {
-        Instant messageTime = Instant.parse(timestamp);
-        Instant now = Instant.now();
-        return messageTime.isBefore(now.minus(MAX_MESSAGE_AGE))
-               || messageTime.isAfter(now.plusSeconds(30));
     }
 
     private String asString(Object value) {

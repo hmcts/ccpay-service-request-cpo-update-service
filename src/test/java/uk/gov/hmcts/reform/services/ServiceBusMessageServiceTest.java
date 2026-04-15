@@ -158,7 +158,7 @@ class ServiceBusMessageServiceTest {
     }
 
     @Test
-    void processMessageFromTopicWithSignatureNotBase64ShouldThrowIllegalArgumentException() throws IOException {
+    void processMessageFromTopicWithSignatureNotBase64ShouldThrowSecurityException() throws IOException {
         CpoUpdateServiceRequest request = CpoUpdateServiceRequest.CpoUpdateServiceRequest()
             .caseId(123L)
             .orderReference("order-reference")
@@ -172,16 +172,16 @@ class ServiceBusMessageServiceTest {
         properties.put("X-Message-Signature", "not-base64");
         configureMessage(body.getBytes(StandardCharsets.UTF_8), properties);
 
-        IllegalArgumentException exception = assertThrows(
-            IllegalArgumentException.class,
+        SecurityException exception = assertThrows(
+            SecurityException.class,
             () -> serviceBusMessageService.processMessageFromTopic(message, result)
         );
 
-        assertEquals("Illegal base64 character 2d", exception.getMessage());
+        assertEquals("Invalid message signature", exception.getMessage());
     }
 
     @Test
-    void processMessageFromTopicWithExpiredTimestampShouldThrowSecurityException() throws IOException {
+    void processMessageFromTopicWithExpiredTimestampShouldStillProcessMessage() throws IOException {
         CpoUpdateServiceRequest request = CpoUpdateServiceRequest.CpoUpdateServiceRequest()
             .caseId(123L)
             .orderReference("order-reference")
@@ -191,14 +191,16 @@ class ServiceBusMessageServiceTest {
 
         configureSigningSecret(HMAC_SECRET);
         String body = objectMapper.writeValueAsString(request);
-        configureSecurityProperties(signedProperties(body, Instant.now().minusSeconds(31 * 60L).toString()));
-
-        SecurityException exception = assertThrows(
-            SecurityException.class,
-            () -> serviceBusMessageService.processMessageFromTopic(message, result)
+        configureMessage(
+            body.getBytes(StandardCharsets.UTF_8),
+            signedProperties(body, Instant.now().minusSeconds(31 * 60L).toString())
         );
+        doNothing().when(cpoUpdateService).updateCpoServiceWithPayment(request);
 
-        assertEquals("Message expired", exception.getMessage());
+        serviceBusMessageService.processMessageFromTopic(message, result);
+
+        verify(cpoUpdateService).updateCpoServiceWithPayment(request);
+        verify(result).set(Boolean.TRUE);
     }
 
     @Test
