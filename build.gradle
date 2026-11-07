@@ -230,7 +230,7 @@ dependencies {
       exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation 'org.apiguardian:apiguardian-api:1.1.2'
-    testImplementation 'com.github.hmcts:fortify-client:1.4.9:all'
+    testImplementation 'com.github.hmcts:fortify-client:1.4.10:all'
 
     integrationTestImplementation sourceSets.main.runtimeClasspath
     integrationTestImplementation sourceSets.test.runtimeClasspath
